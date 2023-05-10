@@ -1,0 +1,108 @@
+.section-title{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-top: 48px;
+  }
+  
+  .section-subtitle{
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 25px;
+    color: #262729;
+  }
+  
+  .section-subtitle-small{
+    font-size: 18px;
+    margin-top: 16px;
+  }
+  
+  .blog-content-video{
+      position: relative;
+      padding-top: 75%;/* 4:3 Aspect Ratio */
+      margin-bottom: 40px;
+  }
+  
+  .blog-content-video__iframe{
+      position: absolute; 
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0; 
+      width: 100%; 
+      height: 100%; 
+  }
+  
+  /*collapse sections styles*/
+  .collapse-content{
+    margin-bottom:24px;
+  }
+  
+  .collapse-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    color:var(--color-headings);
+    margin-bottom: 4px;
+    padding: 10px 0;
+    text-align: start;
+    background-color: var(--bg-6); 
+    border-bottom: 1px solid rgba(22, 22, 22, 0.12);
+    border-radius: 0;
+  }
+  
+  .collapse-btn::after{
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .collapse-btn[aria-expanded="false"]::after {
+    content: "\002B"; 
+  }
+  
+  .collapse-btn[aria-expanded="true"]::after{
+    content: "\2212";
+  }
+  
+  .collapse-btn:hover{
+    color: var(--color-headings);
+  }
+  
+  .collapse-btn:focus{
+    box-shadow:none;
+    outline: 0;
+  }
+  
+  .collapse-btn:focus-visible{
+    outline: 0;
+    box-shadow: 0 0 1px 2px rgba(0,0,0,.9);
+    border-radius: 5px;
+  }
+  
+  .card-body{
+    padding: 10px 0;
+    border: none;
+    background-color: var(--bg-6);
+  }
+  
+  .card-body ol{
+    margin-bottom: 0;
+  }
+  
+  .collapsing{
+    transition: height 0.5s ease-in-out;
+  }
+  
+  /*---------------------------------------------------*/
+  .recommendation-title{
+      margin-top: 40px;
+  }
+  
+  .post-social-share .post-social-share__title{
+      margin-right:15px;
+  }
