@@ -44,7 +44,7 @@
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <div class="d-flex align-items-start">
-                                        <img class="d-flex me-2 rounded-circle" src="{{ asset('') }}admin/images/users/user-2.jpg" alt="Generic placeholder image" height="32">
+                                        <img class="d-flex me-2 rounded-circle" src="{{ asset('admin/images/users/user-2.jpg') }}" alt="Generic placeholder image" height="32">
                                         <div class="w-100">
                                             <h5 class="m-0 font-14">Erwin E. Brown</h5>
                                             <span class="font-12 mb-0">UI Designer</span>
@@ -55,7 +55,7 @@
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <div class="d-flex align-items-start">
-                                        <img class="d-flex me-2 rounded-circle" src="{{ asset('') }}admin/images/users/user-5.jpg" alt="Generic placeholder image" height="32">
+                                        <img class="d-flex me-2 rounded-circle" src="{{ asset('admin/images/users/user-5.jpg') }}" alt="Generic placeholder image" height="32">
                                         <div class="w-100">
                                             <h5 class="m-0 font-14">Jacob Deo</h5>
                                             <span class="font-12 mb-0">Developer</span>
@@ -109,7 +109,7 @@
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item active">
                             <div class="notify-icon">
-                                <img src="{{ asset('') }}admin/images/users/user-1.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                <img src="{{ asset('admin/images/users/user-1.jpg') }}" class="img-fluid rounded-circle" alt="" /> </div>
                             <p class="notify-details">Cristina Pride</p>
                             <p class="text-muted mb-0 user-msg">
                                 <small>Hi, How are you? What about our next meeting</small>
@@ -129,7 +129,7 @@
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                             <div class="notify-icon">
-                                <img src="{{ asset('') }}admin/images/users/user-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                <img src="{{ asset('admin/images/users/user-4.jpg') }}" class="img-fluid rounded-circle" alt="" /> </div>
                             <p class="notify-details">Karen Robinson</p>
                             <p class="text-muted mb-0 user-msg">
                                 <small>Wow ! this admin looks good and awesome design</small>
