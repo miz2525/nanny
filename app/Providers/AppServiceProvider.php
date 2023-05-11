@@ -25,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Loading cache data from database
-        StoreCountriesCache();
-        StoreCitiesCache();
-        StoreLanguagesCache();
+        // StoreCountriesCache();
+        // StoreCitiesCache();
+        // StoreLanguagesCache();
     }
 }

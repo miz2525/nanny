@@ -11,21 +11,21 @@
         <link rel="shortcut icon" href="{{ asset('website/image/png/favicon.png') }}">
 
         <!-- Plugins css-->
-        <link href="{{ asset('') }}admin/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('') }}admin/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('') }}admin/libs/quill/quill.core.css" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('') }}admin/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/libs/quill/quill.core.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/libs/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" />
 
 	    <!-- App css -->
-	    <link href="{{ asset('') }}admin/css/config/default/bootstrap.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
-	    <link href="{{ asset('') }}admin/css/config/default/app.min.css" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
+	    <link href="{{ asset('admin/css/config/default/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
+	    <link href="{{ asset('admin/css/config/default/app.min.css') }}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 
-	    <link href="{{ asset('') }}admin/css/config/default/bootstrap-dark.min.css" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" />
-	    <link href="{{ asset('') }}admin/css/config/default/app-dark.min.css" rel="stylesheet" type="text/css" id="app-dark-stylesheet" />
+	    <link href="{{ asset('admin/css/config/default/bootstrap-dark.min.css') }}" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" />
+	    <link href="{{ asset('admin/css/config/default/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="app-dark-stylesheet" />
 
 	    <!-- icons -->
-	    <link href="{{ asset('') }}admin/css/icons.min.css" rel="stylesheet" type="text/css" />
-
+	    <link href="{{ asset('admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+        @yield('styles')
     </head>
 
     <!-- body start -->

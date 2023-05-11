@@ -484,7 +484,7 @@
 
                 <div class="row">
                     <div class="col-sm-3">
-                        <img src="{{ asset('') }}admin/images/users/user-5.jpg" alt="image" class="img-fluid avatar-xl rounded mb-1">
+                        <img src="{{ asset('admin/images/users/user-5.jpg') }}" alt="image" class="img-fluid avatar-xl rounded mb-1">
                         <p class="mb-3">
                             <a href="" class="text-danger">
                                 <small>
