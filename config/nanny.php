@@ -27,7 +27,7 @@ return [
         'master'=>'Master',
         'professional_certificate'=>'Professional certificate'
     ],
-    'langugage_levels' => [1,2,3,4,5],
+    'langugage_levels' => ['Native','Beginner (basic)','Intermediate','Advanced'],
     'age_group_experience' => [
         'newborn'=>'newborn',
         'toddlers'=>'toddlers',

@@ -42,6 +42,7 @@
                 <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>First name</th>
                             <th>Last name</th>
                             <th>Phone number</th>
@@ -55,6 +56,7 @@
                     <tbody>
                         @foreach ($nannies as $nanny)
                             <tr>
+                                <td>{{ $nanny->id }}</td>
                                 <td>{{ $nanny->first_name }}</td>
                                 <td>{{ $nanny->family_name }}</td>
                                 <td><a href="">{{ $nanny->phone_number }}</a></td>

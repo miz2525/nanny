@@ -20,4 +20,19 @@ class Nanny extends Model
     {
         return $this->hasMany(NanniesBackground::class, 'nanny_id');
     }
+
+    public function images()
+    {
+        return $this->hasMany(Media::class, 'module_id')->where(['module'=>'nanny', 'type'=>'nanny_images']);
+    }
+    
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'nationality_id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
 }

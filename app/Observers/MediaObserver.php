@@ -13,6 +13,7 @@ class MediaObserver
     public function creating(Media $media): void
     {
         $media->added_by = Auth::guard('admin')->user()->id;
+        $media->created_at = date('Y-m-d');
     }
 
     /**
@@ -28,7 +29,8 @@ class MediaObserver
      */
     public function updated(Media $media): void
     {
-        //
+        $media->added_by = Auth::guard('admin')->user()->id;
+        $media->updated_at = date('Y-m-d');
     }
 
     /**

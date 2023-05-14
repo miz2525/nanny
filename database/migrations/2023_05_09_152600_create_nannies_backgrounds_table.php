@@ -16,11 +16,11 @@ return new class extends Migration
             $table->foreignId('nanny_id')->constrained('nannies');
             $table->string('background_type', 255);
             $table->longText('work_title');
-            $table->longText('work_period');
+            $table->longText('work_period')->nullable();
             $table->boolean('status');
-            $table->longText('work_description');
-            $table->longText('reference_title');
-            $table->longText('reference_description');
+            $table->longText('work_description')->nullable();
+            $table->longText('reference_title')->nullable();
+            $table->longText('reference_description')->nullable();
             $table->foreignId('added_by')->constrained('admins');
             $table->timestamps();
         });

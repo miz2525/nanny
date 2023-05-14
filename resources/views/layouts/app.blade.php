@@ -27,6 +27,14 @@
   <!-- Custom stylesheet -->
   <link rel="stylesheet" href="{{ asset('website/css/custom-styles.css') }}">
   @yield('styles')
+  <!-- Google tag (gtag.js) -->
+  <script async src=“https://www.googletagmanager.com/gtag/js?id=G-NPL1VP4F1Y”></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag(‘js’, new Date());
+      gtag(‘config’, ‘G-NPL1VP4F1Y’);
+  </script>
 </head>
 
 <body data-theme-mode-panel-active data-theme="light">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Nanny;
+use App\Services\MediaService;
 use App\Services\NanniesBackgroundService;
 use App\Services\NanniesCommentService;
 use App\Services\NannyService;
@@ -44,6 +45,10 @@ class NanniesController extends Controller
 
         // Adding nanny backgrounds
         NanniesBackgroundService::storeUpdate($nanny_id, $request->nannies_backgrounds);
+        
+        // Adding nanny images
+        MediaService::nanny_images($nanny_id, $request->nanny_images);
+
         return redirect()->route('admin.all-nannies')->with($result->type, $result->message);
     }
 
@@ -51,7 +56,8 @@ class NanniesController extends Controller
     {
         $nanny = Nanny::find($nanny_id);
         $languages = json_decode($nanny->languages);
-        return view('admin.nannies.form', compact('nanny', 'languages'));
+        $environment = \App::environment();
+        return view('admin.nannies.form', compact('nanny', 'languages', 'environment'));
     }
 
     public function update(Request $request, $nanny_id)
@@ -62,6 +68,13 @@ class NanniesController extends Controller
 
        // Adding nanny backgrounds
        NanniesBackgroundService::storeUpdate($nanny_id, $request->nannies_backgrounds);
+
+       if(isset($request->nanny_images)){
+            // Adding nanny images
+            MediaService::nanny_images($nanny_id, $request->nanny_images);
+       }
+       
+
        return redirect()->route('admin.all-nannies')->with($result->type, $result->message);
     }
 
@@ -70,5 +83,15 @@ class NanniesController extends Controller
         // Adding nanny
         $result = NanniesCommentService::store($nanny_id, $request);
         return redirect()->back()->with($result->type, $result->message);
+    }
+    
+    public function delete_nanny_image($image_id)
+    {
+        MediaService::destroy_media($image_id);
+    }
+
+    public function update_nanny_images(Request $request, $nanny_id){
+        // Adding nanny images
+       MediaService::nanny_images($nanny_id, $request->nanny_images);
     }
 }

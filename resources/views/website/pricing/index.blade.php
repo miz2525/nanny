@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title') {{ config('app.name', 'NannyGenie') }} - Pricing @endsection
+@section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection
 
 @section('styles') <!-- Style Section --> @endsection
 
@@ -12,37 +12,36 @@
 <!-- Pricing Table Area -->
 <div class="table-section table-section--l4 bg-default-3 border-bottom border-default-color-3 section-tl-shape">
   <div class="shape">
-    <img class="w-100" src="./image/png/inner-banner-shape.png" alt="">
+    <img class="w-100" src="{{ asset('website/image/png/inner-banner-shape.png') }}" alt="">
   </div>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8 col-xl-9 col-xxl-7">
         <div class="section-title section-title--l4 text-center">
-          <h6 class="section-title__sub-heading text-electric-violet-3">Pricing table</h6>
-          <h2 class="section-title__heading mb-4">Live Chat 24/7 Support</h2>
+          <h6 class="section-title__sub-heading text-electric-violet-3">Access all</h6>
+          <h2 class="section-title__heading mb-4">Nannies’ Contact Details</h2>
         </div>
       </div>
     </div>
     <div class="row justify-content-center">
       <!-- Single Table -->
-      <div class="col-xxl-3 col-lg-4 col-md-6 col-sm-8 col-xs-9">
+      <div class="col-xxl-4 col-lg-5 col-md-7 col-sm-9 col-xs-10">
         <div class="card card--table-single text-center">
           <div class="table-top">
-            <h5 class="table-top__title">Optimizing & SEO</h5>
-            <p class="table-top__text">Monthly package</p>
+                <h5 class="table-top__title">Unlimited access</h5>
+                <p class="table-top__text">For 30 days</p>
             <div class="card--price">
-              <span class="card--price__currency align-self-start">$</span>
-              <h1 class="card--price__price">20</h1>
-              <span class="card--price__price-time">/ Month</span>
+              <span class="card--price__currency align-self-start">AED</span>
+              <h1 class="card--price__price">370</h1>
             </div>
           </div>
           <ul class="card--table-single__list list-unstyled">
-            <li>Unlimited updates & projects</li>
-            <li>Custom permissions</li>
-            <li>Custom instructors</li>
-            <li>Custom designs & features</li>
+            <li>Instant interview booking support</li>
+            <li>Access all information & contact details</li>
           </ul>
-          <a class="btn btn-torch-red btn--lg-2 text-white" href="#">Get Started</a>
+          @if(Auth::check() && Auth::user()->is_paid) @else
+          <a href="{{ route('purchase', env('STRIPE_PRICE_ID')) }}" class="btn btn-torch-red btn--lg-2 text-white">Pay and Get Access</a>
+          @endif
         </div>
       </div>
       <!--/ .Single Table -->
@@ -68,7 +67,7 @@
             <div class="card-body__top d-flex align-items-center justify-content-between">
               <div class="d-flex flex-wrap align-items-center">
                 <div class="card-image">
-                  <img src="./image/home-4/user-img-1.png" alt="">
+                  <img src="{{ asset('website/image/home-4/user-img-1.png') }}" alt="">
                 </div>
                 <div class="card-body__user mr-3">
                   <h3 class="card-title">Charles Patterson</h3>
@@ -89,7 +88,7 @@
             <div class="card-body__top d-flex align-items-center justify-content-between">
               <div class="d-flex flex-wrap align-items-center">
                 <div class="card-image">
-                  <img src="./image/home-3/user-circle-1.png" alt="">
+                  <img src="{{ asset('website/image/home-3/user-circle-1.png') }}" alt="">
                 </div>
                 <div class="card-body__user mr-3">
                   <h3 class="card-title">John Doe</h3>
@@ -110,7 +109,7 @@
             <div class="card-body__top d-flex align-items-center justify-content-between">
               <div class="d-flex flex-wrap align-items-center">
                 <div class="card-image">
-                  <img src="./image/home-3/user-circle-2.png" alt="">
+                  <img src="{{ asset('website/image/home-3/user-circle-2.png') }}" alt="">
                 </div>
                 <div class="card-body__user mr-3">
                   <h3 class="card-title">Tiana Dokidis</h3>
@@ -131,7 +130,7 @@
             <div class="card-body__top d-flex align-items-center justify-content-between">
               <div class="d-flex flex-wrap align-items-center">
                 <div class="card-image">
-                  <img src="./image/home-3/user-circle-3.png" alt="">
+                  <img src="{{ asset('website/image/home-3/user-circle-3.png') }}" alt="">
                 </div>
                 <div class="card-body__user mr-3">
                   <h3 class="card-title">Tiana Dokidis</h3>
@@ -152,7 +151,7 @@
             <div class="card-body__top d-flex align-items-center justify-content-between">
               <div class="d-flex flex-wrap align-items-center">
                 <div class="card-image">
-                  <img src="./image/home-3/user-circle-1.png" alt="">
+                  <img src="{{ asset('website/image/home-3/user-circle-1.png') }}" alt="">
                 </div>
                 <div class="card-body__user mr-3">
                   <h3 class="card-title">Talan Bergson</h3>

@@ -24,4 +24,11 @@ class ContactUsController extends Controller
     {
         return view('website.contact-us.index');
     }
+
+    public function terms()
+    {
+        return view('website.terms.index');
+    }
+
+    
 }

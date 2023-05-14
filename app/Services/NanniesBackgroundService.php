@@ -20,10 +20,17 @@ class NanniesBackgroundService {
                 $nannyBackground = NanniesBackground::where(['nanny_id'=>$row['nanny_id'], 'background_type'=>$row['background_type']])->first();
                 
                 if($nannyBackground){
-                    $nannyBackground->update($row);
+                    
+                    if($row['work_title']){
+                        $nannyBackground->update($row);
+                    }else{
+                        $nannyBackground->delete();
+                    }
                     $result->message = 'Nanny Backgrounds '.AppServiceProvider::UPDATED_SUCCESS_MESSAGE;
                 }else{
-                    NanniesBackground::create($row);
+                    if($row['work_title']!=null){
+                        NanniesBackground::create($row);
+                    }
                     $result->message = 'Nanny Backgrounds '.AppServiceProvider::SUCCESS_MESSAGE;
                 }
             }

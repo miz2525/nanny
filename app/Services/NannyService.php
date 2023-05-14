@@ -17,17 +17,26 @@ class NannyService {
 
             $languagesArray = $nanny['languages'];
             foreach ($languagesArray['language_id'] as $key => $value) {
-                $language = new stdClass();
-                $language->id = $languagesArray['language_id'][$key];
-                $language->level = $languagesArray['language_level'][$key];
-
-                $lang[] = $language;
+                if($languagesArray['language_id'][$key]!=null){
+                    $language = new stdClass();
+                    $language->id = $languagesArray['language_id'][$key];
+                    $language->level = $languagesArray['language_level'][$key];
+    
+                    $lang[] = $language;
+                }
             }
 
             $nanny['languages'] = json_encode($lang);
-            $nanny['age_group_experience'] = implode(',', $nanny['age_group_experience']);
-            $nanny['skills'] = implode(',', $nanny['skills']);
-            $nanny['needs_support_with'] = implode(',', $nanny['needs_support_with']);
+            if(isset($nanny['age_group_experience'])){
+                $nanny['age_group_experience'] = implode(',', $nanny['age_group_experience']);
+            }
+
+            if(isset($nanny['skills'])){
+                $nanny['skills'] = implode(',', $nanny['skills']);
+            }
+            if(isset($nanny['needs_support_with'])){
+                $nanny['needs_support_with'] = implode(',', $nanny['needs_support_with']);
+            }
             
             $findNanny = Nanny::find($nanny_id);
             if($findNanny){

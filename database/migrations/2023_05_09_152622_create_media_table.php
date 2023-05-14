@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('module', 255);
             $table->integer('module_id');
+            $table->string('type', 255);
             $table->string('name', 255);
             $table->string('file_name', 255);
             $table->longText('file_path');

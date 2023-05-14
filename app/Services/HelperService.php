@@ -76,11 +76,100 @@ class HelperService {
     }
 
     public static function GetNannyBackgroundByKey($key, $backgrounds){
-        $backgrounds = $backgrounds->toArray();
-        $findBackgroundKey = array_search($key, array_column($backgrounds, 'background_type'));
-        if($findBackgroundKey){
-            return $backgrounds[$findBackgroundKey];
+        return $backgrounds->where('background_type', $key)->first();
+    }
+
+    public static function calculateAge($date)
+    {
+        $date = new \Carbon\Carbon($date);
+        return (int) $date->diffInYears();
+    }
+
+    public static function dateDifferanceTwoDates($fromDate, $toDate)
+    {
+        $a = strtotime($fromDate);
+        $b = strtotime($toDate);
+
+        $difference = $b - $a;
+
+        $second = 1;
+        $minute = 60 * $second;
+        $hour   = 60 * $minute;
+        $day    = 24 * $hour;
+        $month  = 30 * $day;
+        $year   = 12 * $month;
+
+        $ans["year"]  = floor($difference / $year);
+        $ans["month"]  = floor($difference / $month);
+        $ans["day"]    = floor($difference / $day);
+        $ans["hour"]   = floor(($difference % $day) / $hour);
+        $ans["minute"] = floor((($difference % $day) % $hour) / $minute);
+        $ans["second"] = floor(((($difference % $day) % $hour) % $minute) / $second);
+        $data = array("years" => $ans["year"], "months" => $ans["month"], "days" => $ans["day"], "hours" => $ans["hour"], "minutes" => $ans["minute"], "seconds" => $ans["second"]);
+        return $data;
+    }
+
+    public static function dateDifferanceTwoDatesFormat($fromDate, $toDate)
+    {
+        $diff = self::dateDifferanceTwoDates($fromDate, $toDate);
+        if($diff['years']>0){
+            if($diff['years']>1){
+                return $diff['years'].' years';
+            }
+            return $diff['years'].' year';
         }
-        return false;
+
+        if($diff['months']>0){
+            if($diff['months']>1){
+                return $diff['months'].' months';
+            }
+            return $diff['months'].' month';
+        }
+
+        if($diff['days']>0){
+            if($diff['days']>1){
+                return $diff['days'].' days';
+            }
+            return $diff['days'].' day';
+        }
+
+        if($diff['hours']>0){
+            if($diff['hours']>1){
+                return $diff['hours'].' hours';
+            }
+            return $diff['hours'].' hour';
+        }
+
+        if($diff['minutes']>0){
+            if($diff['minutes']>1){
+                return $diff['minutes'].' minutes';
+            }
+            return $diff['minutes'].' minute';
+        }
+
+        if($diff['seconds']>0){
+            if($diff['seconds']>1){
+                return $diff['seconds'].' seconds';
+            }
+            return $diff['seconds'].' second';
+        }
+        return '';
+    }
+
+    public static function GetNannyLanguagesHtml($languages){
+        // Filipino (native), English (advanced)
+        $html = '';
+        $languages = json_decode($languages);
+        if(collect($languages)->count()>0){
+            foreach ($languages as $key => $language) {
+                $lang = Language::find($language->id);
+                if($key==0){
+                    $html .= $lang->name.' ('.$language->level.')';
+                }else{
+                    $html .= ', '.$lang->name.' ('.$language->level.')';
+                }
+            }
+        }
+        return $html;
     }
 }

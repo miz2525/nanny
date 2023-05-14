@@ -6,8 +6,9 @@
 <!-- Plugins css-->
 <link href="{{ asset('admin/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('admin/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('admin/libs/quill/quill.core.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('admin/libs/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" />
+{{-- <link href="{{ asset('admin/libs/quill/quill.core.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('admin/libs/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" /> --}}
+<link rel="stylesheet" href="{{ asset('admin/libs/summernote-0.8.20-dist/summernote-lite.css') }}" />
 @endsection
 
 @section('content')
@@ -31,9 +32,9 @@
 @include( 'admin.layouts.partials.errors-display' )
 
 @if (isset($nanny))
-<form action="{{ route('admin.nanny.update', $nanny->id) }}" method="POST" id="nanny-form">
+<form action="{{ route('admin.nanny.update', $nanny->id) }}" method="POST" id="nanny-form" enctype="multipart/form-data" class="needs-validation" novalidate>
 @else
-<form action="{{ route('admin.nanny.store') }}" method="POST" id="nanny-form">
+<form action="{{ route('admin.nanny.store') }}" method="POST" id="nanny-form" enctype="multipart/form-data" class="needs-validation" novalidate>
 @endif
 
 @csrf
@@ -60,18 +61,23 @@
 
 
                 <div class="mb-3">
+                    <label for="short_name" class="form-label">Short name <span class="text-danger">*</span></label>
+                    <input type="text" id="validationCustom01" class="form-control" placeholder="e.g : Katy P." name="nanny[short_name]" value="{{isset($nanny)? $nanny->short_name : ''}}" required>
+                </div>
+
+                <div class="mb-3">
                     <label for="first_name" class="form-label">First name <span class="text-danger">*</span></label>
-                    <input type="text" id="first_name" class="form-control" placeholder="e.g : Apple iMac" name="nanny[first_name]" value="{{isset($nanny)? $nanny->first_name : ''}}">
+                    <input type="text" id="first_name" class="form-control" placeholder="e.g : Joe" name="nanny[first_name]" value="{{isset($nanny)? $nanny->first_name : ''}}" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="family_name" class="form-label">Family name <span class="text-danger">*</span></label>
-                    <input type="text" id="family_name" class="form-control" placeholder="e.g : Apple iMac" name="nanny[family_name]" value="{{isset($nanny)? $nanny->family_name : ''}}">
+                    <input type="text" id="family_name" class="form-control" placeholder="e.g : Doe" name="nanny[family_name]" value="{{isset($nanny)? $nanny->family_name : ''}}" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="phone_number" class="form-label">Phone number <span class="text-danger">*</span></label>
-                    <input type="text" id="phone_number" class="form-control" placeholder="e.g : +923244734545" name="nanny[phone_number]" value="{{isset($nanny)? $nanny->phone_number : ''}}">
+                    <input type="text" id="phone_number" class="form-control" placeholder="e.g : +923244734545" name="nanny[phone_number]" value="{{isset($nanny)? $nanny->phone_number : ''}}" required>
                 </div>
 
                 <div class="row">
@@ -110,7 +116,10 @@
                     <label for="intro" class="form-label">
                         The intro part (<a href="https://nimb.ws/pCxvan" target="_blank">this one</a>) <span class="text-danger">*</span>
                     </label>
-                    <textarea class="form-control" id="intro" rows="10" placeholder="Please enter here" name="nanny[intro]">{{isset($nanny->intro)? $nanny->intro : ''}}</textarea>
+                    <textarea class="form-control summernote" id="snow-editor" rows="10" placeholder="Please enter here" name="nanny[intro]" required>{{isset($nanny->intro)? $nanny->intro : ''}}</textarea>
+                    {{-- <div id="snow-editor" style="height: 300px;"> --}}
+                    
+                    {{-- </div> <!-- end Snow-editor--> --}}
                 </div>
 
             </div>
@@ -126,7 +135,7 @@
                 <div class="mb-3">
                     
                     <label for="date_of_birth" class="form-label">Date of birth <span class="text-danger">*</span></label>
-                    <input class="form-control" id="date_of_birth" type="date" name="nanny[date_of_birth]" value="{{isset($nanny)? date('Y-m-d', strtotime($nanny->date_of_birth)) : ''}}">
+                    <input class="form-control" id="date_of_birth" type="date" name="nanny[date_of_birth]" value="{{isset($nanny)? date('Y-m-d', strtotime($nanny->date_of_birth)) : ''}}" required>
                 </div>
 
 
@@ -134,7 +143,8 @@
                     <div class="col-sm-6">
                         <div class="mb-3">
                             <label for="experience_years" class="form-label">Experience (years) <span class="text-danger">*</span></label>
-                            <select class="form-select" id="experience_years" name="nanny[experience_years]">
+                            <select class="form-select" id="experience_years" name="nanny[experience_years]" required>
+                                <option value="">Select Option</option>
                                 @for ($i = 1; $i <= 40; $i++)
                                     <option value="{{$i}}" @if(isset($nanny) && $nanny->experience_years==$i) selected @endif>{{$i}}</option>
                                 @endfor
@@ -145,7 +155,8 @@
                     <div class="col-sm-6">
                         <div class="mb-3">
                             <label for="nationality_id" class="form-label">Nationality <span class="text-danger">*</span></label>
-                            <select class="form-select" id="nationality_id" name="nanny[nationality_id]">
+                            <select class="form-select" id="nationality_id" name="nanny[nationality_id]" required>
+                                <option value="">Select Option</option>
                                 @foreach (GetCountriesCache() as $country)
                                     <option value="{{ $country->id }}" @if(isset($nanny) && $nanny->nationality_id==$country->id) selected @endif>{{ $country->nicename }}</option>
                                 @endforeach
@@ -155,8 +166,9 @@
 
                     <div class="col-sm-6">
                         <div class="mb-3">
-                            <label for="city_id" class="form-label">City</label>
-                            <select class="form-select" id="city_id" name="nanny[city_id]">
+                            <label for="city_id" class="form-label">City <span class="text-danger">*</span></label>
+                            <select class="form-select" id="city_id" name="nanny[city_id]" required>
+                                <option value="">Select Option</option>
                                 @foreach (GetCitiesCache() as $city)
                                     <option value="{{ $city->id }}" @if(isset($nanny) && $nanny->city_id==$city->id) selected @endif>{{ $city->name }}</option>
                                 @endforeach
@@ -169,7 +181,7 @@
 
                 <div class="mb-3">
                     <label for="start_work" class="form-label">Ready to start work from <span class="text-danger">*</span></label>
-                    <input class="form-control" id="start_work" type="date" name="nanny[start_work]" value="{{isset($nanny)? date('Y-m-d', strtotime($nanny->start_work)) : ''}}">
+                    <input class="form-control" id="start_work" type="date" name="nanny[start_work]" value="{{isset($nanny)? date('Y-m-d', strtotime($nanny->start_work)) : ''}}" required>
                 </div>
 
 
@@ -193,7 +205,7 @@
                             <br/>
                             @foreach (config('nanny.open_to_work') as $OTWK=>$OTWV)
                                 <div class="radio form-check-inline">
-                                    <input type="radio" id="{{$OTWK}}" value="{{$OTWK}}" name="nanny[open_to_work]" @if(isset($nanny)) @if($OTWK==$nanny->open_to_work) checked @endif  @else @if($OTWK=='live_in') checked @endif @endif>
+                                    <input type="radio" id="{{$OTWK}}" value="{{$OTWK}}" name="nanny[open_to_work]" @if(isset($nanny)) @if($OTWK==$nanny->open_to_work) checked @endif  @else @if($OTWK=='live_in') checked @endif @endif required>
                                     <label for="{{$OTWK}}"> {{$OTWV}} </label>
                                 </div>
                             @endforeach
@@ -219,7 +231,8 @@
 
                 <div class="mb-3">
                     <label for="visa_status" class="form-label">Visa status <span class="text-danger">*</span></label>
-                    <select class="form-select" id="visa_status" name="nanny[visa_status]">
+                    <select class="form-select" id="visa_status" name="nanny[visa_status]" required>
+                        <option value="">Select Option</option>
                         @foreach (config('nanny.visa_status') as $VSK=>$VSV)
                             <option value="{{$VSK}}" @if(isset($nanny) && $nanny->visa_status==$VSK) selected @endif>{{$VSV}}</option>
                         @endforeach
@@ -228,7 +241,8 @@
 
                 <div class="mb-3">
                     <label for="education_level" class="form-label">Education level <span class="text-danger">*</span></label>
-                    <select class="form-select" id="education_level" name="nanny[education_level]">
+                    <select class="form-select" id="education_level" name="nanny[education_level]" required>
+                        <option value="">Select Option</option>
                         @foreach (config('nanny.education_level') as $ELK=>$ELV)
                             <option value="{{$ELK}}" @if(isset($nanny) && $nanny->education_level==$ELK) selected @endif>{{$ELV}}</option>
                         @endforeach
@@ -239,21 +253,23 @@
                     @for ($i = 0; $i < 3; $i++)
                         <div class="col-sm-6">
                             <div class="mb-3">
-                                <label for="languages" class="form-label">Language {{$i+1}} <span class="text-danger">*</span></label>
-                                <select class="form-select" id="languages" name="nanny[languages][language_id][]">
+                                <label for="languages" class="form-label">Language {{$i+1}} @if($i==0)<span class="text-danger">*</span>@endif</label>
+                                <select class="form-select" id="languages" name="nanny[languages][language_id][]" @if($i==0)required @endif>
+                                    <option value="">Select Option</option>
                                     @foreach (GetLanguagesCache() as $language)
-                                        <option value="{{ $language->id }}" @if(isset($languages) && $languages[$i]->id==$language->id) selected @endif>{{ $language->name.' ('.$language->native_name.')' }}</option>
+                                        <option value="{{ $language->id }}" @if(isset($languages) && isset($languages[$i])) @if($languages[$i]->id==$language->id) selected @endif  @endif>{{ $language->name.' ('.$language->native_name.')' }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-
+                        {{-- @if(isset($languages) && isset($languages[$i])) @if($languages[$i]->id==$language->id) selected @endif @endif --}}
                         <div class="col-sm-6">
                             <div class="mb-3">
-                                <label for="languages_levels" class="form-label">Language {{$i+1}} - level <span class="text-danger">*</span></label>
-                                <select class="form-select" id="languages_levels" name="nanny[languages][language_level][]">
+                                <label for="languages_levels" class="form-label">Language {{$i+1}} - level @if($i==0)<span class="text-danger">*</span>@endif</label>
+                                <select class="form-select" id="languages_levels" name="nanny[languages][language_level][]" @if($i==0)required @endif>
+                                    <option value="">Select Option</option>
                                     @foreach (config('nanny.langugage_levels') as $level)
-                                        <option value="{{ $level }}" @if(isset($languages) && $languages[$i]->level==$level) selected @endif>{{ $level }}</option>
+                                        <option value="{{ $level }}" @if(isset($languages) && isset($languages[$i])) @if($languages[$i]->level==$level) selected @endif @endif>{{ $level }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -267,7 +283,7 @@
                         @foreach (config('nanny.age_group_experience') as $AGEK=>$AGEV)
                             <div class="col-4">
                                 <div class="form-check mb-2 form-check-primary">
-                                    <input class="form-check-input" type="checkbox" id="{{ $AGEK }}" name="nanny[age_group_experience][]" value="{{$AGEV}}" @if(isset($nanny) && in_array($AGEK, explode(',', $nanny->age_group_experience))) checked @endif>
+                                    <input class="form-check-input" type="checkbox" id="{{ $AGEK }}" name="nanny[age_group_experience][]" value="{{$AGEV}}" @if(isset($nanny)) @if(in_array($AGEK, explode(',', $nanny->age_group_experience))) checked @endif @else checked @endif >
                                     <label class="form-check-label" for="{{ $AGEK }}">{{$AGEV}}</label>
                                 </div>
                             </div>
@@ -295,19 +311,19 @@
                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">{{$BTV}}</h5>
 
                 <div class="mb-3">
-                    <label for="work_title_{{$BTK}}" class="form-label">Work description <span class="text-danger">*</span></label>
-                    <input type="text" id="work_title_{{$BTK}}" class="form-control" placeholder="e.g : Nanny / House Help | Dubai | Lebanese Family 2 kids, age 3, infant" name="nannies_backgrounds[{{$BTK}}][work_title]" value="{{($background)? $background['work_title'] : ''}}">
+                    <label for="work_title_{{$BTK}}" class="form-label">Work title @if($BTK=='last_one') <span class="text-danger">*</span> @endif </label>
+                    <input type="text" id="work_title_{{$BTK}}" class="form-control" placeholder="e.g : Nanny / House Help | Dubai | Lebanese Family 2 kids, age 3, infant" name="nannies_backgrounds[{{$BTK}}][work_title]" value="{{($background)? $background['work_title'] : ''}}" @if($BTK=='last_one') required @endif>
                     <span class="help-block"><small>Example: Nanny / House Help | Dubai | Lebanese Family 2 kids, age 3, infant</small></span>
                 </div>
 
                 <div class="mb-3">
-                    <label for="work_period_{{$BTK}}" class="form-label">Work period <span class="text-danger">*</span></label>
-                    <input type="text" id="work_period_{{$BTK}}" class="form-control" placeholder="e.g : January 2017 - Present" name="nannies_backgrounds[{{$BTK}}][work_period]" value="{{($background)? $background['work_period'] : ''}}">
+                    <label for="work_period_{{$BTK}}" class="form-label">Work period @if($BTK=='last_one')<span class="text-danger">*</span>@endif</label>
+                    <input type="text" id="work_period_{{$BTK}}" class="form-control" placeholder="e.g : January 2017 - Present" name="nannies_backgrounds[{{$BTK}}][work_period]" value="{{($background)? $background['work_period'] : ''}}" @if($BTK=='last_one') required @endif>
                     <span class="help-block"><small>Example: January 2017 - Present</small></span>
                 </div>
 
                 <div class="mb-3">
-                    <label class="mb-2">Status <span class="text-danger">*</span></label>
+                    <label class="mb-2">Status @if($BTK=='last_one')<span class="text-danger">*</span>@endif</label>
                     <br/>
                     <div class="radio form-check-inline">
                         <input type="radio" id="status_{{$BTK}}_1" value="1" name="nannies_backgrounds[{{$BTK}}][status]" @if(isset($backgrounds)) @if($background && $background['status']) checked @endif  @else checked @endif>
@@ -321,9 +337,9 @@
 
                 <div class="mb-3">
                     <label for="work_description_{{$BTK}}" class="form-label">
-                        Work description (<a href="https://nimb.ws/3G7rTI" target="_blank">this one</a>) <span class="text-danger">*</span>
+                        Work description (<a href="https://nimb.ws/3G7rTI" target="_blank">this one</a>) @if($BTK=='last_one')<span class="text-danger">*</span> @endif
                     </label>
-                    <textarea class="form-control" id="work_description_{{$BTK}}" rows="10" placeholder="Please enter here" name="nannies_backgrounds[{{$BTK}}][work_description]">{{($background)? $background['work_description'] : ''}}</textarea>
+                    <textarea class="form-control summernote" id="work_description_{{$BTK}}" rows="10" placeholder="Please enter here" name="nannies_backgrounds[{{$BTK}}][work_description]" @if($BTK=='last_one') required @endif>{{($background)? $background['work_description'] : ''}}</textarea>
                 </div>
 
                 <hr />
@@ -338,7 +354,7 @@
                     <label for="reference_description_{{$BTK}}" class="form-label">
                         Reference description (if any) (<a href="https://nimb.ws/dqEGoh" target="_blank">this one</a>)
                     </label>
-                    <textarea class="form-control" id="reference_description_{{$BTK}}" rows="10" placeholder="Please enter here" name="nannies_backgrounds[{{$BTK}}][reference_description]">{{($background)? $background['reference_description'] : ''}}</textarea>
+                    <textarea class="form-control summernote" id="reference_description_{{$BTK}}" rows="10" placeholder="Please enter here" name="nannies_backgrounds[{{$BTK}}][reference_description]">{{($background)? $background['reference_description'] : ''}}</textarea>
                 </div>
 
                 @endforeach
@@ -353,18 +369,18 @@
 
                 <div class="mb-3">
                     <label for="psychometric_key_result" class="form-label">
-                        Key Results (<a href="https://nimb.ws/TvJYUX" target="_blank">this one</a>)
+                        Key Results <span class="text-danger">*</span> (<a href="https://nimb.ws/TvJYUX" target="_blank">this one</a>)
                     </label>
-                    <textarea class="form-control" id="psychometric_key_result" rows="10" placeholder="Please enter here" name="nanny[psychometric_key_result]">{{isset($nanny)? $nanny->psychometric_key_result : ''}}</textarea>
+                    <textarea class="form-control summernote" id="psychometric_key_result" rows="10" placeholder="Please enter here" name="nanny[psychometric_key_result]" required>{{isset($nanny)? $nanny->psychometric_key_result : ''}}</textarea>
                 </div>
 
                 <hr />
 
                 <div class="mb-3">
                     <label for="psychometric_conclusion" class="form-label">
-                        Conclusion (<a href="https://nimb.ws/VXbUMk" target="_blank">this one</a>)
+                        Conclusion <span class="text-danger">*</span> (<a href="https://nimb.ws/VXbUMk" target="_blank">this one</a>)
                     </label>
-                    <textarea class="form-control" id="psychometric_conclusion" rows="10" placeholder="Please enter here" name="nanny[psychometric_conclusion]">{{isset($nanny)? $nanny->psychometric_conclusion : ''}}</textarea>
+                    <textarea class="form-control summernote" id="psychometric_conclusion" rows="10" placeholder="Please enter here" name="nanny[psychometric_conclusion]" required>{{isset($nanny)? $nanny->psychometric_conclusion : ''}}</textarea>
                 </div>
 
             </div>
@@ -379,54 +395,54 @@
 
                 <div class="mb-3">
                     <label for="personality_introduction" class="form-label">
-                        Introduction (<a href="https://miz252.nimbusweb.me/share/8727445/pzs9frbwhe96xs5rc2bx" target="_blank">this one</a>)
+                        Introduction <span class="text-danger">*</span> (<a href="https://miz252.nimbusweb.me/share/8727445/pzs9frbwhe96xs5rc2bx" target="_blank">this one</a>)
                     </label>
-                    <textarea class="form-control" id="personality_introduction" rows="10" placeholder="Please enter here" name="nanny[personality_introduction]">{{isset($nanny)? $nanny->personality_introduction : ''}}</textarea>
+                    <textarea class="form-control summernote" id="personality_introduction" rows="10" placeholder="Please enter here" name="nanny[personality_introduction]" required>{{isset($nanny)? $nanny->personality_introduction : ''}}</textarea>
                 </div>
 
                 <hr />
 
                 <div class="mb-3">
                     <label for="personality_strength" class="form-label">
-                        Strengths (<a href="https://miz252.nimbusweb.me/share/8727445/pzs9frbwhe96xs5rc2bx" target="_blank">this one</a>)
+                        Strengths <span class="text-danger">*</span> (<a href="https://miz252.nimbusweb.me/share/8727445/pzs9frbwhe96xs5rc2bx" target="_blank">this one</a>)
                     </label>
-                    <textarea class="form-control" id="personality_strength" rows="10" placeholder="Please enter here" name="nanny[personality_strength]">{{isset($nanny)? $nanny->personality_strength : ''}}</textarea>
+                    <textarea class="form-control summernote" id="personality_strength" rows="10" placeholder="Please enter here" name="nanny[personality_strength]" required>{{isset($nanny)? $nanny->personality_strength : ''}}</textarea>
                 </div>
 
                 <hr />
 
                 <div class="mb-3">
                     <label for="personality_weekness" class="form-label">
-                        Weaknesses (<a href="https://miz252.nimbusweb.me/share/8727445/pzs9frbwhe96xs5rc2bx" target="_blank">this one</a>)
+                        Weaknesses <span class="text-danger">*</span> (<a href="https://miz252.nimbusweb.me/share/8727445/pzs9frbwhe96xs5rc2bx" target="_blank">this one</a>)
                     </label>
-                    <textarea class="form-control" id="personality_weekness" rows="10" placeholder="Please enter here" name="nanny[personality_weekness]">{{isset($nanny)? $nanny->personality_weekness : ''}}</textarea>
+                    <textarea class="form-control summernote" id="personality_weekness" rows="10" placeholder="Please enter here" name="nanny[personality_weekness]" required>{{isset($nanny)? $nanny->personality_weekness : ''}}</textarea>
                 </div>
 
                 <hr />
 
                 <div class="mb-3">
                     <label for="personality_opportunity" class="form-label">
-                        Opportunities (<a href="https://miz252.nimbusweb.me/share/8727445/pzs9frbwhe96xs5rc2bx" target="_blank">this one</a>)
+                        Opportunities <span class="text-danger">*</span> (<a href="https://miz252.nimbusweb.me/share/8727445/pzs9frbwhe96xs5rc2bx" target="_blank">this one</a>)
                     </label>
-                    <textarea class="form-control" id="personality_opportunity" rows="10" placeholder="Please enter here" name="nanny[personality_opportunity]">{{isset($nanny)? $nanny->personality_opportunity : ''}}</textarea>
+                    <textarea class="form-control summernote" id="personality_opportunity" rows="10" placeholder="Please enter here" name="nanny[personality_opportunity]" required>{{isset($nanny)? $nanny->personality_opportunity : ''}}</textarea>
                 </div>
 
                 <hr />
 
                 <div class="mb-3">
                     <label for="personality_potential_risk" class="form-label">
-                        Potential risks (<a href="https://miz252.nimbusweb.me/share/8727445/pzs9frbwhe96xs5rc2bx" target="_blank">this one</a>)
+                        Potential risks <span class="text-danger">*</span> (<a href="https://miz252.nimbusweb.me/share/8727445/pzs9frbwhe96xs5rc2bx" target="_blank">this one</a>)
                     </label>
-                    <textarea class="form-control" id="personality_potential_risk" rows="10" placeholder="Please enter here" name="nanny[personality_potential_risk]">{{isset($nanny)? $nanny->personality_potential_risk : ''}}</textarea>
+                    <textarea class="form-control summernote" id="personality_potential_risk" rows="10" placeholder="Please enter here" name="nanny[personality_potential_risk]" required>{{isset($nanny)? $nanny->personality_potential_risk : ''}}</textarea>
                 </div>
 
                 <hr />
 
                 <div class="mb-3">
                     <label for="personality_recommendation" class="form-label">
-                        Recommendation (<a href="https://miz252.nimbusweb.me/share/8727445/pzs9frbwhe96xs5rc2bx" target="_blank">this one</a>)
+                        Recommendation <span class="text-danger">*</span> (<a href="https://miz252.nimbusweb.me/share/8727445/pzs9frbwhe96xs5rc2bx" target="_blank">this one</a>)
                     </label>
-                    <textarea class="form-control" id="personality_recommendation" rows="10" placeholder="Please enter here" name="nanny[personality_recommendation]">{{isset($nanny)? $nanny->personality_recommendation : ''}}</textarea>
+                    <textarea class="form-control summernote" id="personality_recommendation" rows="10" placeholder="Please enter here" name="nanny[personality_recommendation]" required>{{isset($nanny)? $nanny->personality_recommendation : ''}}</textarea>
                 </div>
 
             </div>
@@ -442,7 +458,7 @@
                     @foreach (config('nanny.skills') as $skillKey=>$skillValue)
                         <div class="col-4">
                             <div class="form-check mb-2 form-check-primary">
-                                <input class="form-check-input" type="checkbox" id="{{$skillKey}}" value="{{$skillKey}}" name="nanny[skills][]" @if(isset($nanny) && in_array($skillKey, explode(',', $nanny->skills))) checked @endif>
+                                <input class="form-check-input" type="checkbox" id="{{$skillKey}}" value="{{$skillKey}}" name="nanny[skills][]" @if(isset($nanny)) @if(in_array($skillKey, explode(',', $nanny->skills))) checked @endif @endif>
                                 <label class="form-check-label" for="{{$skillKey}}">{{$skillValue}}</label>
                             </div>
                         </div>
@@ -462,7 +478,7 @@
                     @foreach (config('nanny.needs_support_with') as $NSWK=>$NSWV)
                         <div class="col-4">
                             <div class="form-check mb-2 form-check-primary">
-                                <input class="form-check-input" type="checkbox" id="{{$NSWK}}" value="{{$NSWK}}" name="nanny[needs_support_with][]" @if(isset($nanny) && in_array($NSWK, explode(',', $nanny->needs_support_with))) checked @endif>
+                                <input class="form-check-input" type="checkbox" id="{{$NSWK}}" value="{{$NSWK}}" name="nanny[needs_support_with][]" @if(isset($nanny)) @if(in_array($NSWK, explode(',', $nanny->needs_support_with))) checked @endif @endif>
                                 <label class="form-check-label" for="{{$NSWK}}">{{$NSWV}}</label>
                             </div>
                         </div>
@@ -481,39 +497,50 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Nanny images</h5>
-
-                <div class="row">
-                    <div class="col-sm-3">
-                        <img src="{{ asset('admin/images/users/user-5.jpg') }}" alt="image" class="img-fluid avatar-xl rounded mb-1">
-                        <p class="mb-3">
-                            <a href="" class="text-danger">
-                                <small>
-                                    Delete this
-                                </small>
-                            </a>
-                        </p>
-                    </div>
+                <div class="row" id="images_area">
+                    @if(isset($nanny))
+                        @foreach ($nanny->images as $image)
+                            <div class="col-sm-3" id="image_{{$image->id}}">
+                                <img src="{{ URL('/').'/'.env('STORAGE_PATH').'/'.$image->file_name }}" alt="image" class="img-fluid avatar-xl rounded mb-1">
+                                <p class="mb-3">
+                                    <a href="javascript:;" class="text-danger" onclick="delete_nanny_image({{$image->id}}, '{{ route('admin.nanny.delete_image', $image->id) }}')">
+                                        <small>
+                                            Delete this
+                                        </small>
+                                    </a>
+                                </p>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
 
 
                 <div class="mb-3 mb-xl-0">
-                    <label for="nanny_images" class="form-label">Upload new image</label>
-                    <input class="form-control" type="file" id="nanny_images" multiple>
+                    <div class="spinner-border m-2" role="status" style="display: none;" id="image-loader">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <br>
+                    <label for="nanny_images" class="form-label">Upload new images&nbsp;<span class="text-danger">*</span>&nbsp;(width 415 px, height 464 px)</label>
+                    @if(isset($nanny))
+                        <input class="form-control" type="file" id="nanny_images" name="nanny_images[]" multiple accept="image/jpeg, image/png, image/jpg" onchange="upload_nanny_images('{{ route('admin.nanny.update_nanny_images', $nanny->id) }}')" @if(!isset($nanny)) required @endif>
+                    @else
+                        <input class="form-control" type="file" id="nanny_images" name="nanny_images[]" multiple accept="image/jpeg, image/png, image/jpg" onchange="image_select()" @if(!isset($nanny)) required @endif>
+                    @endif
+                    
                 </div>
-
 
                 <!-- Preview -->
                 <div class="dropzone-previews mt-3" id="file-previews"></div>
             </div>
         </div> <!-- end col-->
-
+        
         <div class="card">
             <div class="card-body">
-                <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Nanny video</h5>
+                <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Nanny video <span class="text-danger">*</span></h5>
 
                 <div class="mb-3">
                     <label for="video_link_url" class="form-label">Enter below the video URL</label>
-                    <input type="text" class="form-control" id="video_link_url" placeholder="Enter title" name="nanny[video_link_url]" value="{{isset($nanny)? $nanny->video_link_url : ''}}">
+                    <input type="text" class="form-control" id="video_link_url" placeholder="Enter title" name="nanny[video_link_url]" value="{{isset($nanny)? $nanny->video_link_url : ''}}" required>
                 </div>
 
             </div>
@@ -555,18 +582,20 @@
 
     </div> <!-- end col-->
 </div>
-</form>
-<!-- end row -->
-
 <div class="row">
     <div class="col-12">
         <div class="mb-3">
-            <button type="button" class="btn btn-primary width-lg waves-effect waves-light" onclick="event.preventDefault(); document.getElementById('nanny-form').submit();">@if(isset($nannyF)) Update @else Save @endif</button>
+            {{-- <button type="button" class="btn btn-primary width-lg waves-effect waves-light" onclick="event.preventDefault(); document.getElementById('nanny-form').submit();">@if(isset($nannyF)) Update @else Save @endif</button> --}}
+            <button type="submit" class="btn btn-primary width-lg waves-effect waves-light">@if(isset($nannyF)) Update @else Save @endif</button>
             <button type="button" class="btn btn-light waves-effect" onclick="event.preventDefault(); window.location = '/admin/all-nannies';">Cancel</button>
         </div>
     </div> <!-- end col -->
 </div>
 <!-- end row -->
+</form>
+<!-- end row -->
+
+
 
 
 <!-- file preview template -->
@@ -601,22 +630,138 @@
 @endsection
 
 @section('scripts')
+<!-- Plugin js-->
+<script src="{{ asset('admin/libs/parsleyjs/parsley.min.js') }}"></script>
+
 <!-- Select2 js-->
 <script src="{{ asset('admin/libs/select2/js/select2.min.js') }}"></script>
 <!-- Dropzone file uploads-->
 <script src="{{ asset('admin/libs/dropzone/min/dropzone.min.js') }}"></script>
 
 <!-- Quill js -->
-<script src="{{ asset('admin/libs/quill/quill.min.js') }}"></script>
+{{-- <script src="{{ asset('admin/libs/quill/quill.min.js') }}"></script> --}}
+
+<!-- Init js-->
+{{-- <script src="{{ asset('admin/js/pages/form-quilljs.init.js') }}"></script> --}}
 
 <!-- Init js-->
 <script src="{{ asset('admin/js/pages/form-fileuploads.init.js') }}"></script>
 
+<script src="{{ asset('admin/libs/summernote-0.8.20-dist/summernote-lite.js') }}"></script>
+
+
+<!-- Validation init js-->
+{{-- <script src="{{ asset('admin/js/pages/form-validation.init.js') }}"></script> --}}
+
 <script>
+    $(".needs-validation").parsley();
+
+    $('.summernote').summernote({
+        height: 250,
+        fontNames: ['Grayic'],
+        toolbar: [
+            // [groupName, [list of button]]
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']]
+        ]
+    });
+
+    // $(function() {
+    //     $(".needs-validation").parsley().on("field:validated", function() {
+    //         var e = 0 === $(".parsley-error").length;
+    //         $(".alert-info").toggleClass("d-none", !e),
+    //         $(".alert-warning").toggleClass("d-none", e)
+    //     }).on("form:submit", function() {
+    //         // $('.needs-validation').submit();
+    //         return !1
+    //     })
+    // });
+    
     function add_comment() {
         var comment = $('#nanny_comment').val();
         $('#comment').val(comment);
         $('#comment-form').submit();
     }
+
+    var images = [];
+      function image_select() {
+        images = [];
+          var image = document.getElementById('nanny_images').files;
+          for (i = 0; i < image.length; i++) {
+            images.push({
+                "name" : image[i].name,
+                "url" : URL.createObjectURL(image[i]),
+                "file" : image[i],
+            })
+          }
+          document.getElementById('images_area').innerHTML = image_show();
+      }
+
+      function image_show() {
+          var image = "";
+          images.forEach((i) => {
+            image += `<div class="col-sm-3">
+                        <img src="`+ i.url +`" alt="image" class="img-fluid avatar-xl rounded mb-1">
+                        <p class="mb-3">
+                            <a href="javascript:;" class="text-danger" onclick="delete_image(`+ images.indexOf(i) +`)">
+                                <small>
+                                    Delete this
+                                </small>
+                            </a>
+                        </p>
+                    </div>`;
+          })
+          return image;
+      }
+      function delete_image(e) {
+        images.splice(e, 1);
+        document.getElementById('images_area').innerHTML = image_show();
+
+        const dt = new DataTransfer()
+        const input = document.getElementById('nanny_images')
+        const { files } = input
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i]
+            if (e !== i)
+            dt.items.add(file);
+        }
+
+        input.files = dt.files;
+        // console.log(document.getElementById('nanny_images').files);
+      }
+
+      function delete_nanny_image(id, url){
+        if(confirm('Are you sure, you want to delete this image?')){
+            $(`#image_${id}`).remove();
+            $.get(url).done((e) => {});
+        }
+      }
+
+      function upload_nanny_images(url){
+        $("#image-loader").show();
+        var formData = new FormData();
+        var filesLength=document.getElementById('nanny_images').files.length;
+        for(var i=0;i<filesLength;i++){
+            formData.append("nanny_images[]", document.getElementById('nanny_images').files[i]);
+        }
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+            success: function(data) {
+                $("#image-loader").hide();
+                location.reload();
+            }
+        });
+      }
 </script>
 @endsection

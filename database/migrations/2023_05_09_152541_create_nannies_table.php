@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('nannies', function (Blueprint $table) {
             $table->id();
             $table->enum('status', ['active', 'under_review', 'not_active']);
+            $table->string('short_name', 255);
             $table->string('first_name', 255);
             $table->string('family_name', 255);
             $table->string('phone_number', 255);
@@ -26,12 +27,12 @@ return new class extends Migration
             $table->foreignId('city_id')->constrained('cities');
             $table->date('start_work');
             $table->enum('open_to_work', ['live_in', 'live_out', 'both']);
-            $table->float('salary_live_in');
-            $table->float('salary_live_out');
+            $table->float('salary_live_in')->nullable();
+            $table->float('salary_live_out')->nullable();
             $table->string('visa_status', 255);
             $table->string('education_level', 255);
             $table->longText('languages');
-            $table->longText('age_group_experience');
+            $table->longText('age_group_experience')->nullable();
             $table->longText('video_link_url');
             $table->longText('psychometric_key_result');
             $table->longText('psychometric_conclusion');
@@ -41,8 +42,8 @@ return new class extends Migration
             $table->longText('personality_opportunity');
             $table->longText('personality_potential_risk');
             $table->longText('personality_recommendation');
-            $table->longText('skills');
-            $table->longText('needs_support_with');
+            $table->longText('skills')->nullable();
+            $table->longText('needs_support_with')->nullable();
             $table->foreignId('added_by')->constrained('admins');
             $table->timestamps();
         });

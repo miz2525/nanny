@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title') {{ config('app.name', 'NannyGenie') }} - Dummy @endsection
+@section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection
 
 @section('styles') <!-- Style Section --> @endsection
 

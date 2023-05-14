@@ -10,6 +10,9 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('website/image/png/favicon.png') }}">
 
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <!-- Plugins css-->
         <link href="{{ asset('admin/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
@@ -26,6 +29,14 @@
 	    <!-- icons -->
 	    <link href="{{ asset('admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
         @yield('styles')
+        <!-- Google tag (gtag.js) -->
+        <script async src=“https://www.googletagmanager.com/gtag/js?id=G-NPL1VP4F1Y”></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag(‘js’, new Date());
+            gtag(‘config’, ‘G-NPL1VP4F1Y’);
+        </script>
     </head>
 
     <!-- body start -->

@@ -73,3 +73,35 @@ if (!function_exists('GetNannyBackgroundByKey')) {
         return HelperService::GetNannyBackgroundByKey($key, $backgrounds);
     }
 }
+
+/** Get age */
+if (!function_exists('calculateAge')) {
+    function calculateAge($date)
+    {
+        return HelperService::calculateAge($date);
+    }
+}
+
+/** Get date difference */
+if (!function_exists('dateDifferanceTwoDates')) {
+    function dateDifferanceTwoDates($from, $to)
+    {
+        return HelperService::dateDifferanceTwoDates($from, $to);
+    }
+}
+
+/** Get date in format */
+if (!function_exists('dateDifferanceTwoDatesFormat')) {
+    function dateDifferanceTwoDatesFormat($from, $to)
+    {
+        return HelperService::dateDifferanceTwoDatesFormat($from, $to);
+    }
+}
+
+/** Get date in format */
+if (!function_exists('GetNannyLanguagesHtml')) {
+    function GetNannyLanguagesHtml($languages)
+    {
+        return HelperService::GetNannyLanguagesHtml($languages);
+    }
+}

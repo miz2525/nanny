@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class CustomerController extends Controller
 {
@@ -17,6 +18,7 @@ class CustomerController extends Controller
     
     public function index()
     {
-        return view('admin.customer.index');
+        $customers = User::all();
+        return view('admin.customer.index', compact('customers'));
     }
 }

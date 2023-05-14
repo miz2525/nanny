@@ -1,3 +1,4 @@
+<!-- Footer Area -->
 <div class="footer-area footer-inner-1 position-relative bg-default-3">
   <div class="container">
     <footer class="footer-top">
@@ -17,22 +18,17 @@
               We’re the digital agency to create<br class="d-none d-xl-block"> your digital presence for better<br class="d-none d-xl-block"> conversion and sales.</p>
             <ul class="footer-social-share footer-social-share--rounded mt-4">
               <li>
-                <a href="javascript:;">
+                <a target="_blank" href="https://www.facebook.com/Nanny-Genie-115112761575114/">
                   <i class="fab fa-facebook-square"></i>
                 </a>
               </li>
               <li>
-                <a href="javascript:;">
-                  <i class="fab fa-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
+                <a target="_blank" href="https://www.instagram.com/nanny.genie/">
                   <i class="fab fa-instagram"></i>
                 </a>
               </li>
               <li>
-                <a href="javascript:;">
+                <a target="_blank" href="https://www.linkedin.com/company/nanny-genie/">
                   <i class="fab fa-linkedin"></i>
                 </a>
               </li>
@@ -51,16 +47,22 @@
                 <a href="{{ route('all-nannies') }}">All nannies</a>
               </li>
               <li>
-                <a href="{{ route('pricing') }}">Pricing</a>
-              </li>
-              <li>
                 <a href="javascript:;">Our story</a>
               </li>
               <li>
                 <a href="{{ route('contact-us') }}">Contact</a>
               </li>
               <li>
-                <a href="javascript:;">Terms & conditions</a>
+                <a href="{{ route('terms') }}">Terms & conditions</a>
+              </li>
+              <li>
+                <a href="javascript:;">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="javascript:;">Ethical considerations for hiring a nanny</a>
+              </li>
+              <li>
+                <a href="javascript:;">Eligibility criteria for hiring a nanny</a>
               </li>
             </ul>
           </div>
@@ -72,22 +74,29 @@
             <ul class="footer-widgets__list footer-widgets--address">
               <li>
                 <i class="fa fa-map-marker-alt text-electric-violet-2"></i>
-                <span>Address: <br class="d-block">
-                                    4401 Waldeck Street,<br class="d-block">
-                                    Grapevine Nashville, Tx 76051</span>
+                <span>
+                    Address:
+                    <br class="d-block">
+                    The Binary by Omniyat (Marasi Dr)
+                    <br class="d-block">
+                    Business Bay - Dubai, UAE
+                </span>
               </li>
               <li>
                 <i class="fa fa-phone-alt text-electric-violet-2"></i>
                 <div class="list-content">
                   <span class="d-block gr-text-hover-decoration-none"> Phone: </span>
-                  <a href="javascript:;">+99 (0) 101 0000 888</a>
+                  <a href="te:+971 58 598 6373">+971 58 598 6373</a>
+                  <br />
+                  <a href="te:+971 50 922 0172">+971 50 922 0172</a>
                 </div>
               </li>
               <li>
                 <i class="fa fa-envelope text-electric-violet-2"></i>
-                <a class="heading-default-color gr-text-hover-underline text-break" href="mailto:info@medcartel.com">
-                  <span class="d-block gr-text-hover-decoration-none"> Phone:
-                                    </span>info@medcartel.com</a>
+                  <span class="d-block gr-text-hover-decoration-none">
+                      Email:
+                  </span>
+                  hello [at] nannygenie [dot] com
               </li>
             </ul>
           </div>
@@ -97,8 +106,9 @@
     </footer>
     <div class="copyright text-center border-top border-default-color-3">
       <p class="mb-0">
-        © {{ date('Y') }} All Rights Reserved
+        © 2023 All Rights Reserved
       </p>
     </div>
   </div>
 </div>
+    <!--/ .Footer Area -->

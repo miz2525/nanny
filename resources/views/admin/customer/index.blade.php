@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('page-title') {{ config('app.name', 'NannyGenie') }} - All Customers @endsection
+@section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection
 
 @section('styles')
 <style>
@@ -41,27 +41,16 @@
                             <th>Account created</th>
                         </tr>
                     </thead>
-
-
                     <tbody>
+                        @foreach ($customers as $customer)
                         <tr>
-                            <td>$Name</td>
-                            <td>$Email</td>
-                            <td><a href="https://wa.me/971568264577">+971568264577</a></td>
-                            <td>21 Apr 2023</td>
+                            <td>{{$customer->name}}</td>
+                            <td>{{$customer->email}}</td>
+                            {{-- <td><a href="https://wa.me/971568264577">N/A</a></td> --}}
+                            <td><a href="javascript:;">N/A</a></td>
+                            <td>{{date('d M Y', strtotime($customer->created_at))}}</td>
                         </tr>
-                        <tr>
-                            <td>$Name</td>
-                            <td>$Lname</td>
-                            <td><a href="https://wa.me/971568264577">+971568264577</a></td>
-                            <td>21 Apr 2023</td>
-                        </tr>
-                        <tr>
-                            <td>$Name</td>
-                            <td>$Lname</td>
-                            <td><a href="https://wa.me/971568264577">+971568264577</a></td>
-                            <td>21 Apr 2023</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
 
