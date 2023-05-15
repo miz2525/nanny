@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -48,6 +49,7 @@ class HomeController extends Controller
     
     public function purchase(Request $request, $price_id)
     {
+        if(!Auth::check()) return redirect('login');
         return $request->user()->checkout([$price_id], [
             'success_url' => route('checkout-success').'?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('checkout-cancel'),

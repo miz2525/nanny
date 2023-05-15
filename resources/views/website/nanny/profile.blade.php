@@ -208,7 +208,7 @@
             <h2 class="section-title recommendation-title mt-7 mb--20">Recommendation</h2>
             {!! $nanny->personality_recommendation !!}
           </section>
-          @php $skills = collect(explode(',', $nanny->skills)) @endphp
+          @php $skills = collect(array_filter(explode(',', $nanny->skills))); @endphp
           @if($skills->count()>0)
           <section class="post-tags-section pt-4">
             <h5 class="post-tags-section__title mb-0 mt-0">
@@ -223,7 +223,7 @@
           </section>
           @endif
 
-          @php $supports = collect(explode(',', $nanny->needs_support_with)) @endphp
+          @php $supports = collect(array_filter(explode(',', $nanny->needs_support_with))) @endphp
           @if($supports->count()>0)
           <section class="post-tags-section pt-4">
             <h5 class="post-tags-section__title mb-0 mt-0">
