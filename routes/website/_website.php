@@ -22,8 +22,11 @@ Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/all-nannies', [NannyController::class,'index'])->name('all-nannies');
 Route::get('/nanny/profile/{id}', [NannyController::class,'profile'])->name('nanny.profile');
 Route::get('/pricing', [PricingController::class,'index'])->name('pricing');
-Route::get('/contact-us', [ContactUsController::class,'index'])->name('contact-us');
-Route::get('/terms', [ContactUsController::class,'terms'])->name('terms');
+Route::get('/contact-us', [HomeController::class,'contact_us'])->name('contact-us');
+Route::get('/terms', [HomeController::class,'terms'])->name('terms');
+Route::get('/privacy-policy', [HomeController::class,'privacy_policy'])->name('privacy-policy');
+Route::get('/ethical-considerations-for-hiring-a-nanny', [HomeController::class,'ethical_considerations_for_hiring_a_nanny'])->name('ethical-considerations-for-hiring-a-nanny');
+Route::get('/eligibility-criteria-for-hiring-a-nanny', [HomeController::class,'eligibility_criteria_for_hiring_a_nanny'])->name('eligibility-criteria-for-hiring-a-nanny');
 
 
 Route::get('purchase/{price_id}', [HomeController::class,'purchase'])->name('purchase');

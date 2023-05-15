@@ -36,7 +36,12 @@
                 Pricing
               </a>
             </li>
-            <li class="nav-item nav-item-has-children">
+            <li class="nav-item">
+              <a href="{{ route('contact-us') }}" class="nav-link-item drop-trigger">
+                Contact
+              </a>
+            </li>
+            {{-- <li class="nav-item nav-item-has-children">
               <a href="#" class="nav-link-item drop-trigger">About us <i class="fas fa-angle-down"></i>
               </a>
               <ul class="sub-menu" id="submenu-2">
@@ -51,7 +56,7 @@
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
           </ul>
         </nav>
       </div>

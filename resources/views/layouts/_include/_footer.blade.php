@@ -15,7 +15,11 @@
               </a>
             </div>
             <p class="footer-widgets__text mt-5">
-              We’re the digital agency to create<br class="d-none d-xl-block"> your digital presence for better<br class="d-none d-xl-block"> conversion and sales.</p>
+              Nanny Genie aims to create happy families and happy nannies by providing a reliable and trustworthy platform.
+              <br /><br />
+              We understand the challenges of relying on social media groups and anonymous recommendations,
+              which is why we offer a secure and transparent environment for finding the right nanny.
+            </p>
             <ul class="footer-social-share footer-social-share--rounded mt-4">
               <li>
                 <a target="_blank" href="https://www.facebook.com/Nanny-Genie-115112761575114/">
@@ -46,9 +50,9 @@
               <li>
                 <a href="{{ route('all-nannies') }}">All nannies</a>
               </li>
-              <li>
+              {{-- <li>
                 <a href="javascript:;">Our story</a>
-              </li>
+              </li> --}}
               <li>
                 <a href="{{ route('contact-us') }}">Contact</a>
               </li>
@@ -56,13 +60,13 @@
                 <a href="{{ route('terms') }}">Terms & conditions</a>
               </li>
               <li>
-                <a href="javascript:;">Privacy Policy</a>
+                <a href="{{ route('privacy-policy') }}">Privacy Policy</a>
               </li>
               <li>
-                <a href="javascript:;">Ethical considerations for hiring a nanny</a>
+                <a href="{{ route('ethical-considerations-for-hiring-a-nanny') }}">Ethical considerations for hiring a nanny</a>
               </li>
               <li>
-                <a href="javascript:;">Eligibility criteria for hiring a nanny</a>
+                <a href="{{ route('eligibility-criteria-for-hiring-a-nanny') }}">Eligibility criteria for hiring a nanny</a>
               </li>
             </ul>
           </div>

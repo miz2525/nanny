@@ -20,6 +20,31 @@ class HomeController extends Controller
     {
         return view('website.home.index');
     }
+
+    public function contact_us()
+    {
+        return view('website.contact-us.index');
+    }
+
+    public function terms()
+    {
+        return view('website.terms.index');
+    }
+
+    public function privacy_policy()
+    {
+        return view('website.privacy_policy.index');
+    }
+
+    public function ethical_considerations_for_hiring_a_nanny()
+    {
+        return view('website.ethical_considerations_for_hiring_a_nanny.index');
+    }
+
+    public function eligibility_criteria_for_hiring_a_nanny()
+    {
+        return view('website.eligibility_criteria_for_hiring_a_nanny.index');
+    }
     
     public function purchase(Request $request, $price_id)
     {
