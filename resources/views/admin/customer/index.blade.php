@@ -46,8 +46,8 @@
                         <tr>
                             <td>{{$customer->name}}</td>
                             <td>{{$customer->email}}</td>
-                            {{-- <td><a href="https://wa.me/971568264577">N/A</a></td> --}}
-                            <td><a href="javascript:;">N/A</a></td>
+                            <td><a href="https://wa.me/{{$customer->phone}}" target="_blank">{{$customer->phone}}</a></td>
+                            {{-- <td><a href="javascript:;">N/A</a></td> --}}
                             <td>{{date('d M Y', strtotime($customer->created_at))}}</td>
                         </tr>
                         @endforeach

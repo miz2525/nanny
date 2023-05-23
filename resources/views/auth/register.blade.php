@@ -18,9 +18,15 @@
           </div>
         </div>
         <div class="col-xxl-5 col-xl-6 col-lg-7 col-md-8 col-xs-10">
-          <div class="section-title section-title--l5 pb-6">
+          {{-- <div class="section-title section-title--l5 pb-6">
             <h2 class="section-title__heading" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">Sign Up to Fastland</h2>
             <p class="section-title__description" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300" data-aos-once="true">When, while lovely valley teems with vapour around atlas<br class="d-none d-lg-block"> meand meridian the upper impenetrable.</p>
+          </div> --}}
+          <div class="section-title section-title--l5 pb-6">
+            <h2 class="section-title__heading aos-init aos-animate" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">Sign up to NannyGenie</h2>
+            <p class="section-title__description aos-init aos-animate" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300" data-aos-once="true">
+                The fastest way to find the best nanny for your home
+            </p>
           </div>
           <div class="form-box form-box--sign-up" data-aos="fade-up" data-aos-duration="500" data-aos-delay="500" data-aos-once="true">
             <div class="contact-form" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300" data-aos-once="true">
@@ -45,6 +51,15 @@
                   @enderror
                 </div>
                 <div class="form-floating">
+                  <input class="form-control @error('phone') is-invalid @enderror" type="number" placeholder="Your Phone number" id="phone" name="phone" value="{{ old('phone') }}" required autocomplete="phone" />
+                  <label for="phone">Your Phone number</label>
+                  @error('phone')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+                </div>
+                <div class="form-floating">
                   <input class="form-control @error('password') is-invalid @enderror" type="password" placeholder="Your Password" id="password" name="password" required autocomplete="new-password" />
                   <label for="password">Your Password</label>
                   @error('password')
@@ -57,9 +72,15 @@
                   <input class="form-control" type="password" placeholder="Confirm Your Password" id="password-confirm" name="password_confirmation" required autocomplete="new-password" />
                   <label for="password-confirm">Confirm Your Password</label>
                 </div>
-                <div class="form-check d-flex align-items-center mt-6 mb-3">
+                {{-- <div class="form-check d-flex align-items-center mt-6 mb-3">
                   <input class="form-check-input bg-white float-none mt-0 mb-0" type="checkbox" value="" id="flexCheckDefault" required>
                   <label class="form-check-label" for="flexCheckDefault">I agree to all the statements included in<a class="btn-link--2 text-electric-violet-2 ms-1" href="terms.php">privacy policy</a></label>
+                </div> --}}
+                <div class="form-check d-flex align-items-center mt-6 mb-3">
+                  <input class="form-check-input bg-white float-none mt-0 mb-0" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault" checked="" style="font-size: 75%;">
+                      I agree to all Terms &amp; Conditions and Privacy Policy
+                  </label>
                 </div>
                 <button class="btn btn-primary shadow--primary-5 btn--lg-2 rounded-55 text-white mt-2" type="submit">Sign Up</button>
               </form>

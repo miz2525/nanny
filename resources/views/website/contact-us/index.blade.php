@@ -45,9 +45,10 @@
               <div class="widget-body">
                 <h3 class="widget-body--title">Call us:</h3>
                 <p>
-                    <a href="te:+971 58 598 6373">+971 58 598 6373</a>
+                    {{-- <a href="te:+971 58 598 6373">+971 58 598 6373</a>
                     <br class="d-block">
-                    <a href="te:+971 50 922 0172">+971 50 922 0172</a>
+                    <a href="te:+971 50 922 0172">+971 50 922 0172</a> --}}
+                    <a href="te:+971 52 982 8176">+971 52 982 8176</a>
                 </p>
               </div>
             </div>

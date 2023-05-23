@@ -50,7 +50,7 @@
 </div>
 <!--/ .Pricing Table Area -->
 <!-- Testimonial Area -->
-<div class="testimonial-section testimonial-section--l4 bg-default-3">
+{{-- <div class="testimonial-section testimonial-section--l4 bg-default-3">
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-8 col-xl-9 col-xxl-7">
@@ -168,8 +168,10 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 <!--/ .Testimonial Area -->
+
+@include('layouts._include._testimonials')
 @endsection
 
 @section('footer')

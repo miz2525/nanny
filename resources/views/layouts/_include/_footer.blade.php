@@ -90,17 +90,26 @@
                 <i class="fa fa-phone-alt text-electric-violet-2"></i>
                 <div class="list-content">
                   <span class="d-block gr-text-hover-decoration-none"> Phone: </span>
-                  <a href="te:+971 58 598 6373">+971 58 598 6373</a>
+                  <a href="te:+971 52 982 8176">+971 52 982 8176</a>
+                  {{-- <a href="te:+971 58 598 6373">+971 58 598 6373</a>
                   <br />
-                  <a href="te:+971 50 922 0172">+971 50 922 0172</a>
+                  <a href="te:+971 50 922 0172">+971 50 922 0172</a> --}}
                 </div>
               </li>
-              <li>
+              {{-- <li>
                 <i class="fa fa-envelope text-electric-violet-2"></i>
                   <span class="d-block gr-text-hover-decoration-none">
                       Email:
                   </span>
                   hello [at] nannygenie [dot] com
+              </li> --}}
+              <li>
+                <i class="fa fa-envelope text-electric-violet-2"></i>
+                  <span class="d-block gr-text-hover-decoration-none">
+                      Email:
+                      <br>
+                      hello [at] nannygenie [dot] com
+                  </span>
               </li>
             </ul>
           </div>
