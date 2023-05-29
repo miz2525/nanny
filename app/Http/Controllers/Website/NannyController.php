@@ -22,6 +22,12 @@ class NannyController extends Controller
         return view('website.nanny.index', compact('nannies'));
     }
 
+    public function latest_added()
+    {
+        $nannies = Nanny::where('status', 'active')->orderby('id', 'DESC')->paginate(6);
+        return view('website.nanny.latest_added', compact('nannies'));
+    }
+
     public function profile($nanny_id)
     {
         $nanny = Nanny::where(['id'=>$nanny_id, 'status'=>'active'])->first();

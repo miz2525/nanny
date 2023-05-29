@@ -25,6 +25,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 /** Nannies Routes */
 Route::get('/all-nannies', [NanniesController::class, 'index'])->name('all-nannies');
+Route::get('/latest-nannies', [NanniesController::class,'latest'])->name('latest-nannies');
 Route::get('/nanny/add', [NanniesController::class, 'add'])->name('nanny.add');
 Route::get('/nanny/edit/{nanny_id}', [NanniesController::class, 'edit'])->name('nanny.edit');
 Route::post('/admin/nanny/store', [NanniesController::class, 'store'])->name('nanny.store');

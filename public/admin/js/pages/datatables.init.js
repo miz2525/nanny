@@ -33,6 +33,29 @@ $(document).ready(function() {
             $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
         }
     });
+    $("#datatable-buttons-latest-nannies").DataTable({
+        order: [[0, 'desc']],
+        lengthChange: !1,
+        buttons: [{
+            extend: "copy",
+            className: "btn-light"
+        }, {
+            extend: "print",
+            className: "btn-light"
+        }, {
+            extend: "pdf",
+            className: "btn-light"
+        }],
+        language: {
+            paginate: {
+                previous: "<i class='mdi mdi-chevron-left'>",
+                next: "<i class='mdi mdi-chevron-right'>"
+            }
+        },
+        drawCallback: function() {
+            $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+        }
+    });
     $("#selection-datatable").DataTable({
         select: {
             style: "multi"

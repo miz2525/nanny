@@ -27,6 +27,12 @@ class NanniesController extends Controller
         return view('admin.nannies.index', compact('nannies'));
     }
 
+    public function latest()
+    {
+        $nannies = Nanny::where('status', 'active')->get();
+        return view('admin.nannies.latest', compact('nannies'));
+    }
+
     public function add()
     {
         return view('admin.nannies.form');

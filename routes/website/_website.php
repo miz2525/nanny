@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/all-nannies', [NannyController::class,'index'])->name('all-nannies');
+Route::get('/all-nannies/latest-added', [NannyController::class,'latest_added'])->name('all-nannies.latest-added');
 Route::get('/nanny/profile/{id}', [NannyController::class,'profile'])->name('nanny.profile');
 Route::get('/pricing', [PricingController::class,'index'])->name('pricing');
 Route::get('/contact-us', [HomeController::class,'contact_us'])->name('contact-us');

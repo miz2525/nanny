@@ -28,17 +28,28 @@
   <link rel="stylesheet" href="{{ asset('website/css/custom-styles.css') }}">
   @yield('styles')
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPL1VP4F1Y"></script>
+  {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPL1VP4F1Y"></script> --}}
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    // window.dataLayer = window.dataLayer || [];
+    // function gtag(){dataLayer.push(arguments);}
+    // gtag('js', new Date());
   
-    gtag('config', 'G-NPL1VP4F1Y');
+    // gtag('config', 'G-NPL1VP4F1Y');
   </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-52NRTK9');</script>
+    <!-- End Google Tag Manager -->
 </head>
 
 <body data-theme-mode-panel-active data-theme="light">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52NRTK9"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="site-wrapper overflow-hidden ">
     <div id="loading">
       <img src="{{ asset('website/image/preloader.gif') }}" alt="">
