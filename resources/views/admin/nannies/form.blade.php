@@ -9,6 +9,8 @@
 {{-- <link href="{{ asset('admin/libs/quill/quill.core.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('admin/libs/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" /> --}}
 <link rel="stylesheet" href="{{ asset('admin/libs/summernote-0.8.20-dist/summernote-lite.css') }}" />
+<!-- Cropper css -->
+<link href="{{ asset('admin/libs/cropper/cropper.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -38,6 +40,40 @@
 @endif
 
 @csrf
+
+{{-- <div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-9">
+                        <div class="img-container">
+                            <img id="image" src="{{ asset('admin/images/small/img-3.jpg') }}" alt="Picture" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="image-crop-preview clearfix">
+                            <div class="img-preview preview-lg"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="row">
     <div class="col-lg-6">
 
@@ -245,7 +281,7 @@
                         <option value="">Select Option</option>
                         @foreach (config('nanny.education_level') as $ELK=>$ELV)
                             <option value="{{$ELK}}" @if(isset($nanny) && $nanny->education_level==$ELK) selected @endif>{{$ELV}}</option>
-                        @endforeach
+                        @endforeach≈
                     </select>
                 </div>
 
@@ -649,6 +685,9 @@
 
 <script src="{{ asset('admin/libs/summernote-0.8.20-dist/summernote-lite.js') }}"></script>
 
+<!-- Plugins js -->
+<script src="{{ asset('admin/libs/cropper/cropper.min.js') }}"></script>
+
 
 <!-- Validation init js-->
 {{-- <script src="{{ asset('admin/js/pages/form-validation.init.js') }}"></script> --}}
@@ -763,5 +802,25 @@
             }
         });
       }
+</script>
+
+<script>
+    // var $image = $('#image');
+
+    // $image.cropper({
+    // aspectRatio: 16 / 9,
+    // crop: function(event) {
+    //     console.log(event.detail.x);
+    //     console.log(event.detail.y);
+    //     console.log(event.detail.width);
+    //     console.log(event.detail.height);
+    //     console.log(event.detail.rotate);
+    //     console.log(event.detail.scaleX);
+    //     console.log(event.detail.scaleY);
+    // }
+    // });
+
+    // // Get the Cropper.js instance after initialized
+    // var cropper = $image.data('cropper');
 </script>
 @endsection

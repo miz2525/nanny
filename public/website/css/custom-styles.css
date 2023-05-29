@@ -126,3 +126,76 @@
   font-size: 18px;
   margin-right:15px;
 }
+
+/*------------------ALL NANNIES filters--------------*/
+.form__filters{
+  gap:0.5rem;
+  flex-wrap: wrap;
+  margin-inline: auto;
+}
+
+.form__filters .btn{ width:100%;}
+
+@media (min-width:480px){
+  .form__filters .btn,
+  .form__filter{
+    width:calc(50% - 4px);
+  }
+}
+
+@media (min-width:768px){
+  .form__filters .btn,
+  .form__filter{
+    width:calc(50% - 4px);
+  }
+}
+
+@media (min-width:992px){
+  .form__filters .btn,
+  .form__filter{
+    width:calc(33.333333% - 6px);
+  }
+}
+
+@media (min-width:1200px){
+  .form__filters{ flex-wrap: nowrap;}
+}
+
+@media (max-width:480px){
+  .form__filters{
+    gap:0.25rem;
+  }
+
+  .form__filter{
+    padding-block:0.5rem;
+    font-size: 14px;
+  }
+
+  .form__filters .btn{
+    height: 45px;
+    font-size: 14px;
+  }
+}
+
+.blogs-post .hover-content__post-meta li a:last-child{
+  padding-right: 5px;
+}
+
+.blogs-post .hover-content__post-meta li a:last-child::before{
+  content:none;
+}
+
+.link-video{
+  white-space: nowrap;
+}
+
+.link-video__icon{
+  display: inline-block;
+  padding-right: 4px;
+}
+
+.link-video__icon img{
+  height: 28px;
+  width: 28px;
+  vertical-align: bottom;
+}

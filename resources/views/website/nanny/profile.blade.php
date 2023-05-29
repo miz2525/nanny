@@ -5,6 +5,39 @@
 @section('styles')
   <style>
     #loading{ display: none !important; }
+    .para-styles > p {
+      font-family: unset !important;
+      color: unset !important;
+      font-size: unset !important;
+      line-height: unset !important;
+    }
+
+    .para-styles > p > span {
+      font-family: unset !important;
+      color: unset !important;
+      font-size: unset !important;
+      line-height: unset !important;
+    }
+
+    .para-styles > ol > li {
+      font-family: unset !important;
+      color: unset !important;
+      font-size: unset !important;
+      line-height: unset !important;
+    }
+
+    .para-styles > ol > li > p > span {
+      font-family: unset !important;
+      color: unset !important;
+      font-size: unset !important;
+      line-height: unset !important;
+    }
+    span {
+      font-family: unset !important;
+      color: unset !important;
+      font-size: unset !important;
+      line-height: unset !important;
+    }
   </style>
 @endsection
 
@@ -31,7 +64,8 @@
               </iframe>
             </div>
 
-            {!! $nanny->intro !!}
+            <div class="para-styles blog-content__text">{!! $nanny->intro !!}</div>
+            
           </section>
 
           <section class="work-background mt-7 mb--40 mb-lg--65">
@@ -146,25 +180,28 @@
               Key Results
               </button>
               <div class="collapse" id="collapseField3">
-                <div class="card card-body">
+                <div class="card card-body para-styles blog-content__text">
                   {!! $nanny->psychometric_key_result !!}
                 </div>
               </div>
             </div>
-
-            {!! $nanny->psychometric_conclusion !!}
+            <div class="para-styles blog-content__text">
+              {!! $nanny->psychometric_conclusion !!}
+            </div>
           </section>
 
           <section class="personality-report mt-7 mb--40 mb-lg--65">
             <h2 class="section-title mb--20">Personality Report</h2>
-            {!! $nanny->personality_introduction !!}
+            <div class="para-styles blog-content__text">
+              {!! $nanny->personality_introduction !!}
+            </div>
 
             <div class="collapse-content">
               <button class="btn collapse-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseField4" aria-expanded="false" aria-controls="collapseField4">
               Strengths
               </button>
               <div class="collapse" id="collapseField4">
-                <div class="card card-body">
+                <div class="card card-body para-styles blog-content__text">
                   {!! ($nanny->personality_strength) !!}
                 </div>
               </div>
@@ -175,7 +212,7 @@
               Weaknesses
               </button>
               <div class="collapse" id="collapseField5">
-                <div class="card card-body">
+                <div class="card card-body para-styles blog-content__text">
                   {!! $nanny->personality_weekness !!}
                 </div>
               </div>
@@ -183,10 +220,10 @@
 
             <div class="collapse-content">
               <button class="btn collapse-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseField6" aria-expanded="false" aria-controls="collapseField6">
-              Opportunities when hiring an ISFJ
+              Opportunities with this personality type
               </button>
               <div class="collapse" id="collapseField6">
-                <div class="card card-body">
+                <div class="card card-body para-styles blog-content__text">
                   {!! $nanny->personality_opportunity !!}
                 </div>
               </div>
@@ -197,7 +234,7 @@
               Potential Risks
               </button>
               <div class="collapse" id="collapseField7">
-                <div class="card card-body">
+                <div class="card card-body para-styles blog-content__text">
                   {!! $nanny->personality_potential_risk !!}
                 </div>
               </div>
@@ -206,7 +243,9 @@
             
 
             <h2 class="section-title recommendation-title mt-7 mb--20">Recommendation</h2>
-            {!! $nanny->personality_recommendation !!}
+            <div class="para-styles blog-content__text">
+              {!! $nanny->personality_recommendation !!}
+            </div>
           </section>
           @php $skills = collect(array_filter(explode(',', $nanny->skills))); @endphp
           @if($skills->count()>0)
@@ -238,13 +277,15 @@
           @endif
 
           <section class="post-social-share d-flex align-items-center flex-wrap pt-4">
-            <h5 class="post-social-share__title mb-0">Share:</h5>
+            {{-- <h5 class="post-social-share__title mb-0">Share:</h5> --}}
             <ul class="social-share list-unstyled mb-0">
-              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="https://web.whatsapp.com/send?text=Hey, I found a nanny on NannyGenie - {{ route('nanny.profile', $nanny->id) }}" target="_blank"><h5 class="post-social-share__title mb-0">Share this on Whatsapp:</h5> <i class="fab fa-whatsapp"></i></a></li>
+              {{-- <li><a href="#"><i class="fab fa-instagram"></i></a></li>
               <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
               <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i></a></li> --}}
             </ul>
+            {{-- <a href="https://web.whatsapp.com/send?text=Hey, I found a nanny on NannyGenie - $theURLComesHere" target="_blank"> --}}
           </section>
         </div>
       </div>

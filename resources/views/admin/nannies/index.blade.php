@@ -47,6 +47,7 @@
                             <th>Last name</th>
                             <th>Phone number</th>
                             <th>Status</th>
+                            <th>Created at</th>
                             <th>Last updated</th>
                             <th>Actions</th>
                         </tr>
@@ -62,6 +63,7 @@
                                 <td><a href="">{{ $nanny->phone_number }}</a></td>
                                 <td>{!! GetNannyStatusSpan($nanny->status) !!}</td>
                                 <td>{{date('d/m/Y', strtotime($nanny->created_at))}}</td>
+                                <td>{{date('d/m/Y', strtotime($nanny->updated_at))}}</td>
                                 <td><a href="{{ route('admin.nanny.edit', $nanny->id) }}">Edit</a></td>
                             </tr>
                         @endforeach

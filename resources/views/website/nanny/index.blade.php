@@ -25,6 +25,49 @@
           </div>
         </div>
       </div>
+      <div class="row justify-content-center mb-5">
+        <form action="{{ route('all-nannies') }}" class="form__filters col d-flex justify-content-center align-items-center col" method="GET">
+          <select class="form-select form__filter" aria-label="Filter by experience" style="" name="ex">
+            <option value="" selected="">Experience:</option>
+            <option value="<1" @if(isset(request()->ex) && request()->ex=='<1') selected="" @endif>Under 1 year</option>
+            <option value="1-3" @if(isset(request()->ex) && request()->ex=='1-3') selected="" @endif>1 to 3 years</option>
+            <option value="3-5" @if(isset(request()->ex) && request()->ex=='3-5') selected="" @endif>3 to 5 years</option>
+            <option value="5>" @if(isset(request()->ex) && request()->ex=='5>') selected="" @endif>More than 5 years</option>
+          </select>
+
+          <select class="form-select form__filter" aria-label="Filter by languages" style="" name="la">
+            <option value="" selected="">Languages:</option>
+            <option value="english" @if(isset(request()->la) && request()->la=='english') selected="" @endif>English</option>
+            <option value="french" @if(isset(request()->la) && request()->la=='french') selected="" @endif>French</option>
+            <option value="tagalog" @if(isset(request()->la) && request()->la=='tagalog') selected="" @endif>Tagalog</option>
+            <option value="haitian" @if(isset(request()->la) && request()->la=='haitian') selected="" @endif>Haitian</option> 
+            <option value="arabic" @if(isset(request()->la) && request()->la=='arabic') selected="" @endif>Arabic</option>
+          </select>
+
+          <select class="form-select form__filter" aria-label="Filter by age group" style="" name="ag">
+            <option value="" selected="">Age groups:</option>
+            @foreach (config('nanny.age_group_experience') as $AGEK=>$AGEV)
+              <option value="{{$AGEK}}" @if(isset(request()->ag) && request()->ag==$AGEK) selected="" @endif>{{ucfirst($AGEV)}}</option>
+            @endforeach
+          </select>
+
+          <select class="form-select form__filter" aria-label="Filter by visa status" style="" name="visa">
+            <option value="" selected="">Visa status:</option>
+            @foreach (config('nanny.visa_status') as $VSK=>$VSV)
+                <option value="{{$VSK}}" @if(isset(request()->visa) && request()->visa==$VSK) selected="" @endif>{{$VSV}}</option>
+            @endforeach
+          </select>
+
+          <select class="form-select form__filter" aria-label="Filter by education level" style="" name="edu">
+            <option value="" selected="">Education level:</option>
+            @foreach (config('nanny.education_level') as $ELK=>$ELV)
+                <option value="{{$ELK}}" @if(isset(request()->edu) && request()->edu==$ELK) selected="" @endif>{{$ELV}}</option>
+            @endforeach
+          </select>               
+          
+          <button type="submit" class="btn btn-primary shadow--primary-4 btn--lg-2 text-white">Search</button>
+        </form>
+    </div>
       <div class="row justify-content-center">
 
         @foreach ($nannies as $nanny)
@@ -37,7 +80,7 @@
                     <a href="{{ route('nanny.profile', $nanny->id) }}" class="hover-content__badge badge bg-primary">
                       View profile
                     </a>
-                    <a href="/blog-details.html" class="hover-content__date">
+                    <a href="{{ route('nanny.profile', $nanny->id) }}" class="hover-content__date">
                       Available from {{date('d M', strtotime($nanny->start_work))}}
                     </a>
                   </div>
@@ -52,8 +95,12 @@
                       <a href="{{ route('nanny.profile', $nanny->id) }}">
                         {{$nanny->country->nicename}}
                       </a>
-                      <a href="{{ route('nanny.profile', $nanny->id) }}">
+                      {{-- <a href="{{ route('nanny.profile', $nanny->id) }}">
                         {{config('nanny.visa_status')[$nanny->visa_status]}}
+                      </a> --}}
+                      <a class="link-video" href="{{$nanny->video_link_url}}" target="_blank">
+                        <span class="link-video__icon"><img src="{{ asset('website/image/svg/icon-youtube.svg') }}" alt=""></span>
+                        Video interview
                       </a>
                     </li>
                   </ul>
@@ -63,7 +110,9 @@
             <!-- End profile -->
         @endforeach
       </div>
-      {!! $nannies->withQueryString()->links('pagination::bootstrap-5') !!}
+      {{-- {{dd(request()->all())}} --}}
+      {{-- {!! $nannies->withQueryString()->links('pagination::bootstrap-5') !!} --}}
+      {{ $nannies->appends(request()->all())->links('pagination::bootstrap-5') }}
       {{-- <div class="row justify-content-center mt-7">
         <div class="col-xl-4">
           <div class="pagination">
@@ -90,4 +139,10 @@
     @include('layouts._include._footer')
 @endsection
 
-@section('scripts') <!-- Script Section --> @endsection
+@section('scripts')
+<script>
+  $(document).ready(function() {
+      $('select').niceSelect('destroy');
+  });
+</script>
+@endsection
