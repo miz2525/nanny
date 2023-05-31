@@ -69,51 +69,59 @@
         </form>
     </div>
       <div class="row justify-content-center">
-
-        @foreach ($nannies as $nanny)
-            <!-- Start profile -->
-            <div class="col-xl-4 col-lg-9 col-md-7 col-xs-10">
-              <div class="blogs-post blogs-post--small">
-                @if($nanny->images->first())
-                <img class="w-100" src="{{ URL('/').'/'.env('STORAGE_PATH').'/'.$nanny->images->first()->file_name }}" alt="">
-                @else
-                <img class="w-100" src="http://nanny.local.com/storage/whatsapp_image_20230522_at_18.53.13_(1)1684849550.jpeg" alt="">
-                @endif
-                
-                <div class="hover-content">
-                  <div class="hover-content__top d-flex align-items-center dark-mode-texts">
-                    <a href="{{ route('nanny.profile', $nanny->id) }}" class="hover-content__badge badge bg-primary">
-                      View profile
+        @if($nannies->count()>0)
+          @foreach ($nannies as $nanny)
+              <!-- Start profile -->
+              <div class="col-xl-4 col-lg-9 col-md-7 col-xs-10">
+                <div class="blogs-post blogs-post--small">
+                  @if($nanny->images->first())
+                  <img class="w-100" src="{{ URL('/').'/'.env('STORAGE_PATH').'/'.$nanny->images->first()->file_name }}" alt="">
+                  @else
+                  <img class="w-100" src="http://nanny.local.com/storage/whatsapp_image_20230522_at_18.53.13_(1)1684849550.jpeg" alt="">
+                  @endif
+                  
+                  <div class="hover-content">
+                    <div class="hover-content__top d-flex align-items-center dark-mode-texts">
+                      <a href="{{ route('nanny.profile', $nanny->id) }}" class="hover-content__badge badge bg-primary">
+                        View profile
+                      </a>
+                      <a href="{{ route('nanny.profile', $nanny->id) }}" class="hover-content__date">
+                        Available from {{date('d M', strtotime($nanny->start_work))}}
+                      </a>
+                    </div>
+                    <a href="{{ route('nanny.profile', $nanny->id) }}" class="hover-content__title">
+                      {{$nanny->short_name}} ({{calculateAge($nanny->date_of_birth)}} years)
                     </a>
-                    <a href="{{ route('nanny.profile', $nanny->id) }}" class="hover-content__date">
-                      Available from {{date('d M', strtotime($nanny->start_work))}}
-                    </a>
+                    <ul class="hover-content__post-meta list-unstyled">
+                      <li>
+                        <a href="{{ route('nanny.profile', $nanny->id) }}">
+                          {{config('nanny.open_to_work')[$nanny->open_to_work]}}
+                        </a>
+                        <a href="{{ route('nanny.profile', $nanny->id) }}">
+                          {{$nanny->country->nicename}}
+                        </a>
+                        {{-- <a href="{{ route('nanny.profile', $nanny->id) }}">
+                          {{config('nanny.visa_status')[$nanny->visa_status]}}
+                        </a> --}}
+                        <a class="link-video" href="{{$nanny->video_link_url}}" target="_blank">
+                          <span class="link-video__icon"><img src="{{ asset('website/image/svg/icon-youtube.svg') }}" alt=""></span>
+                          Video interview
+                        </a>
+                      </li>
+                    </ul>
                   </div>
-                  <a href="{{ route('nanny.profile', $nanny->id) }}" class="hover-content__title">
-                    {{$nanny->short_name}} ({{calculateAge($nanny->date_of_birth)}} years)
-                  </a>
-                  <ul class="hover-content__post-meta list-unstyled">
-                    <li>
-                      <a href="{{ route('nanny.profile', $nanny->id) }}">
-                        {{config('nanny.open_to_work')[$nanny->open_to_work]}}
-                      </a>
-                      <a href="{{ route('nanny.profile', $nanny->id) }}">
-                        {{$nanny->country->nicename}}
-                      </a>
-                      {{-- <a href="{{ route('nanny.profile', $nanny->id) }}">
-                        {{config('nanny.visa_status')[$nanny->visa_status]}}
-                      </a> --}}
-                      <a class="link-video" href="{{$nanny->video_link_url}}" target="_blank">
-                        <span class="link-video__icon"><img src="{{ asset('website/image/svg/icon-youtube.svg') }}" alt=""></span>
-                        Video interview
-                      </a>
-                    </li>
-                  </ul>
                 </div>
               </div>
-            </div>
-            <!-- End profile -->
-        @endforeach
+              <!-- End profile -->
+          @endforeach
+        @else
+        <div class="row justify-content-center">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12 text-center">
+            <p class="mt-5">Sorry, there are no results for your filters.</p>
+            <h5 class="section-title__sub-heading text-electric-violet-2"><a href="{{ route('all-nannies') }}">See all nannies</a></h5>
+          </div>
+        </div>
+        @endif
       </div>
       {{-- {{dd(request()->all())}} --}}
       {{-- {!! $nannies->withQueryString()->links('pagination::bootstrap-5') !!} --}}

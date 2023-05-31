@@ -11,7 +11,7 @@ $(document).ready(function() {
         }
     });
     var a = $("#datatable-buttons").DataTable({
-        order: [[6, 'desc']],
+        order: [[3, 'desc']],
         lengthChange: !1,
         buttons: [{
             extend: "copy",
