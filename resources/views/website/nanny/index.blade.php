@@ -74,7 +74,12 @@
             <!-- Start profile -->
             <div class="col-xl-4 col-lg-9 col-md-7 col-xs-10">
               <div class="blogs-post blogs-post--small">
+                @if($nanny->images->first())
                 <img class="w-100" src="{{ URL('/').'/'.env('STORAGE_PATH').'/'.$nanny->images->first()->file_name }}" alt="">
+                @else
+                <img class="w-100" src="http://nanny.local.com/storage/whatsapp_image_20230522_at_18.53.13_(1)1684849550.jpeg" alt="">
+                @endif
+                
                 <div class="hover-content">
                   <div class="hover-content__top d-flex align-items-center dark-mode-texts">
                     <a href="{{ route('nanny.profile', $nanny->id) }}" class="hover-content__badge badge bg-primary">

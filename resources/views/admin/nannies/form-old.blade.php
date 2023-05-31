@@ -6,8 +6,9 @@
 <!-- Plugins css-->
 <link href="{{ asset('admin/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('admin/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+{{-- <link href="{{ asset('admin/libs/quill/quill.core.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('admin/libs/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" /> --}}
 <link rel="stylesheet" href="{{ asset('admin/libs/summernote-0.8.20-dist/summernote-lite.css') }}" />
-
 <!-- Cropper css -->
 <link href="{{ asset('admin/libs/cropper/cropper.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
@@ -528,7 +529,11 @@
                     </div>
                     <br>
                     <label for="nanny_images" class="form-label">Upload new images&nbsp;<span class="text-danger">*</span>&nbsp;(width 415 px, height 464 px)</label>
-                    <input class="form-control" type="file" id="nanny_image" accept="image/jpeg, image/png, image/jpg" @if(!isset($nanny)) required @endif>
+                    @if(isset($nanny))
+                        <input class="form-control" type="file" id="nanny_images" name="nanny_images[]" multiple accept="image/jpeg, image/png, image/jpg" onchange="upload_nanny_images('{{ route('admin.nanny.update_nanny_images', $nanny->id) }}')" @if(!isset($nanny)) required @endif>
+                    @else
+                        <input class="form-control" type="file" id="nanny_images" name="nanny_images[]" multiple accept="image/jpeg, image/png, image/jpg" onchange="image_select()" @if(!isset($nanny)) required @endif>
+                    @endif
                     
                 </div>
 
@@ -628,22 +633,16 @@
         <div class="modal-content">
             <div class="modal-body" style="text-align: center;">
                 <div class="img-container">
-                    <img id="image" src="" alt="Picture" class="img-fluid">
+                    <img id="image" src="{{ asset('admin/images/small/img-3.jpg') }}" alt="Picture" class="img-fluid">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-
-                
-                @if(isset($nanny))
-                    <button type="button" class="btn btn-primary" onclick="save_image('{{ route('admin.nanny.update_nanny_image', $nanny->id) }}')">Save changes</button>
-                @else
-                    <button type="button" class="btn btn-primary" onclick="save_image(false)">Save changes</button>
-                @endif
+                <button type="button" class="btn btn-primary" onclick="save_image()">Save changes</button>
             </div>
-        </div>
-    </div>
-</div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 @if (isset($nanny))
 <form action="{{ route('admin.nanny.comment.store', $nanny->id) }}" method="POST" id="comment-form">
     @csrf
@@ -659,9 +658,14 @@
 
 <!-- Select2 js-->
 <script src="{{ asset('admin/libs/select2/js/select2.min.js') }}"></script>
-
 <!-- Dropzone file uploads-->
 <script src="{{ asset('admin/libs/dropzone/min/dropzone.min.js') }}"></script>
+
+<!-- Quill js -->
+{{-- <script src="{{ asset('admin/libs/quill/quill.min.js') }}"></script> --}}
+
+<!-- Init js-->
+{{-- <script src="{{ asset('admin/js/pages/form-quilljs.init.js') }}"></script> --}}
 
 <!-- Init js-->
 <script src="{{ asset('admin/js/pages/form-fileuploads.init.js') }}"></script>
@@ -670,6 +674,10 @@
 
 <!-- Plugins js -->
 <script src="{{ asset('admin/libs/cropper/cropper.min.js') }}"></script>
+
+
+<!-- Validation init js-->
+{{-- <script src="{{ asset('admin/js/pages/form-validation.init.js') }}"></script> --}}
 
 <script>
     $(".needs-validation").parsley();
@@ -687,6 +695,17 @@
             ['para', ['ul', 'ol', 'paragraph']]
         ]
     });
+
+    // $(function() {
+    //     $(".needs-validation").parsley().on("field:validated", function() {
+    //         var e = 0 === $(".parsley-error").length;
+    //         $(".alert-info").toggleClass("d-none", !e),
+    //         $(".alert-warning").toggleClass("d-none", e)
+    //     }).on("form:submit", function() {
+    //         // $('.needs-validation').submit();
+    //         return !1
+    //     })
+    // });
     
     function add_comment() {
         var comment = $('#nanny_comment').val();
@@ -694,72 +713,68 @@
         $('#comment-form').submit();
     }
 
-    function delete_nanny_image(id, url){
+    var images = [];
+      function image_select() {
+        images = [];
+          var image = document.getElementById('nanny_images').files;
+          for (i = 0; i < image.length; i++) {
+            images.push({
+                "name" : image[i].name,
+                "url" : URL.createObjectURL(image[i]),
+                "file" : image[i],
+            })
+          }
+          document.getElementById('images_area').innerHTML = image_show();
+      }
+
+      function image_show() {
+          var image = "";
+          images.forEach((i) => {
+            image += `<div class="col-sm-3">
+                        <img src="`+ i.url +`" alt="image" class="img-fluid avatar-xl rounded mb-1">
+                        <p class="mb-3">
+                            <a href="javascript:;" class="text-danger" onclick="delete_image(`+ images.indexOf(i) +`)">
+                                <small>
+                                    Delete this
+                                </small>
+                            </a>
+                        </p>
+                    </div>`;
+          })
+          return image;
+      }
+      function delete_image(e) {
+        images.splice(e, 1);
+        document.getElementById('images_area').innerHTML = image_show();
+
+        const dt = new DataTransfer()
+        const input = document.getElementById('nanny_images')
+        const { files } = input
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i]
+            if (e !== i)
+            dt.items.add(file);
+        }
+
+        input.files = dt.files;
+        // console.log(document.getElementById('nanny_images').files);
+      }
+
+      function delete_nanny_image(id, url){
         if(confirm('Are you sure, you want to delete this image?')){
             $(`#image_${id}`).remove();
             $.get(url).done((e) => {});
         }
-    }
+      }
 
-    let upload = document.querySelector('#nanny_image');
-    let $image = $('#image');
-    let cropper = null;
-    let imageObj = {};
-
-    upload.addEventListener('change', e => {
-        if(cropper) $image.cropper('destroy');
-        imageObj.name = e.target.files[0].name;
-        var extension = imageObj.name.split('.');
-        imageObj.file_extension = extension[extension.length-1];
-        imageObj.mime_type = e.target.files[0].type;
-        imageObj.file_size = e.target.files[0].size;
-
-        if(e.target.files.length){
-            const reader = new FileReader();
-            reader.onload = e => {
-                if (e.target.result) {
-                    $image.attr('src', e.target.result);
-                    $image.cropper({
-                        viewMode: 1,
-                        aspectRatio: 415 / 464,
-                        cropBoxResizable:false,
-                        dragMode: 0,
-                        center:true,
-                        minContainerWidth: 765,
-                        minContainerHeight: 440,
-                        crop: function(event) { }
-                    });
-                    cropper = $image.data('cropper');
-                    $('#PictureModal').modal('show');
-                }
-            };
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    });
-
-    function save_image(upload_url){
-        let imgSrc = cropper.getCroppedCanvas().toDataURL();
-        imageObj.src = imgSrc;
-        var html = `<div class="col-sm-3" id="nanny-cache-image">
-                        <img src="${imgSrc}" alt="image" class="img-fluid avatar-xl rounded mb-1">
-                        <p class="mb-3">
-                            <a href="javascript:;" class="text-danger" onclick="delete_image()"><small>Delete this</small></a>
-                        </p>
-                        <textarea name="nanny_image" style="display:none;">${JSON.stringify(imageObj)}</textarea>
-                    </div>`;
-        document.getElementById('images_area').innerHTML = html;
-        $('#PictureModal').modal('hide');
-        if(upload_url) upload_nanny_image(upload_url);
-    }
-
-    function delete_image() {
-        $('#nanny-cache-image').remove();
-    }
-
-    function upload_nanny_image(url){
+      function upload_nanny_images(url){
         $("#image-loader").show();
         var formData = new FormData();
-        formData.append('nanny_image', JSON.stringify(imageObj));
+        var filesLength=document.getElementById('nanny_images').files.length;
+        for(var i=0;i<filesLength;i++){
+            formData.append("nanny_images[]", document.getElementById('nanny_images').files[i]);
+        }
         $.ajax({
             url: url,
             method: 'POST',
@@ -774,7 +789,31 @@
             }
         });
       }
+</script>
 
+<script>
+    var $image = $('#image');
 
+    $image.cropper({
+        viewMode: 1,
+        aspectRatio: 415 / 464,
+        cropBoxResizable:false,
+        dragMode: 0,
+        center:true,
+        minContainerWidth: 765,
+        minContainerHeight: 440,
+        crop: function(event) {
+            console.log(event.detail.x);
+            console.log(event.detail.y);
+            console.log(event.detail.width);
+            console.log(event.detail.height);
+            console.log(event.detail.rotate);
+            console.log(event.detail.scaleX);
+            console.log(event.detail.scaleY);
+        }
+    });
+    // $image.setData({width: 415, height: 464});
+    // Get the Cropper.js instance after initialized
+    var cropper = $image.data('cropper');
 </script>
 @endsection

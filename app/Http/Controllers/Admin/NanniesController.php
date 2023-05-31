@@ -53,7 +53,8 @@ class NanniesController extends Controller
         NanniesBackgroundService::storeUpdate($nanny_id, $request->nannies_backgrounds);
         
         // Adding nanny images
-        MediaService::nanny_images($nanny_id, $request->nanny_images);
+        // MediaService::nanny_images($nanny_id, $request->nanny_images);
+        MediaService::nanny_image($nanny_id, $request->nanny_image);
 
         return redirect()->route('admin.all-nannies')->with($result->type, $result->message);
     }
@@ -96,8 +97,9 @@ class NanniesController extends Controller
         MediaService::destroy_media($image_id);
     }
 
-    public function update_nanny_images(Request $request, $nanny_id){
+    public function update_nanny_image(Request $request, $nanny_id){
         // Adding nanny images
-       MediaService::nanny_images($nanny_id, $request->nanny_images);
+        // MediaService::nanny_images($nanny_id, $request->nanny_images);
+        MediaService::nanny_image($nanny_id, $request->nanny_image);
     }
 }

@@ -2,7 +2,7 @@
 namespace App\Services;
 
 use App\Models\Media;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class MediaService {
@@ -26,35 +26,39 @@ class MediaService {
 
     public static function nanny_images($nanny_id, $files){
         foreach ($files as $key => $file) {
-
-            $fullname = $file->getClientOriginalName();
-            $filename = pathinfo($fullname, PATHINFO_FILENAME);
-            $extension = pathinfo($fullname, PATHINFO_EXTENSION);
-            $filename = str_replace('-', '', $filename);
-            $filename = str_replace('  ', '_', $filename);
-            $filename = str_replace(' ', '_', $filename);
-            $filename = strtolower($filename);
-            $filename = $filename.time().'.'.$extension;
-
-
-            $data = array();
-            $data['module'] = 'nanny';
-            $data['module_id'] = $nanny_id;
-            $data['type'] = 'nanny_images';
-            $data['name'] = $file->getClientOriginalName();
-            $data['file_name'] = $filename;
-            $data['file_path'] = 'public/';
-            $data['full_path'] = $file->storeAs('/public', $filename);
-            $data['file_extension'] = $file->getClientOriginalExtension();
-            $data['mime_type'] = $file->getMimeType();
-            $data['file_size'] = $file->getSize();
-
-            // foreach (self::sizes() as $key => $value) {
-            //     File::isDirectory(storage_path('app/public/'.$key)) or File::makeDirectory(storage_path('app/public/'.$key), 0777, true, true);
-            //     self::resize_image(storage_path('app/public/'.$filename), storage_path('app/public/'.$key.'/'.$filename), $value['width'], $value['height']);
-            // }
-            Media::create($data);
+            self::nanny_image($nanny_id, $file);
         }
+    }
+    
+    public static function nanny_image($nanny_id, $file){
+        $file = json_decode($file);
+        $image_64 = $file->src;
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1); 
+        $image = str_replace($replace, '', $image_64); 
+        $image = str_replace(' ', '+', $image);
+
+        $fullname = $file->name;
+        $filename = pathinfo($fullname, PATHINFO_FILENAME);
+        $extension = $file->file_extension;
+        $filename = str_replace('-', '', $filename);
+        $filename = str_replace('  ', '_', $filename);
+        $filename = str_replace(' ', '_', $filename);
+        $filename = strtolower($filename);
+        $imageName = $filename.time().'.'.$extension;
+
+        Storage::disk('public')->put($imageName, base64_decode($image));
+        $data['module'] = 'nanny';
+        $data['module_id'] = $nanny_id;
+        $data['type'] = 'nanny_images';
+        $data['name'] = $file->name;
+        $data['file_name'] = $imageName;
+        $data['file_path'] = 'public/';
+        $data['full_path'] = $data['file_path'].'/'.$imageName;
+        $data['file_extension'] = $extension;
+        $data['mime_type'] = $file->mime_type;
+        $data['file_size'] = $file->file_size;
+        
+        Media::create($data);
     }
 
     public static function destroy_media($id){
@@ -62,7 +66,6 @@ class MediaService {
         self::unlink_media($media->file_name);
         $media->delete();
     }
-    
 
     public static function resize_image($file_path, $save_path, $width, $height){
         $img = Image::make($file_path)->resize($width, $height, function ($constraint) {
