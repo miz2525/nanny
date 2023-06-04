@@ -105,3 +105,11 @@ if (!function_exists('GetNannyLanguagesHtml')) {
         return HelperService::GetNannyLanguagesHtml($languages);
     }
 }
+
+/** Get date in format */
+if (!function_exists('GetCustomerPaymentDetail')) {
+    function GetCustomerPaymentDetail($customer)
+    {
+        return HelperService::GetCustomerPaymentDetail($customer);
+    }
+}

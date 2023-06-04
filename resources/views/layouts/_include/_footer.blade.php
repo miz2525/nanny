@@ -90,7 +90,7 @@
                 <i class="fa fa-phone-alt text-electric-violet-2"></i>
                 <div class="list-content">
                   <span class="d-block gr-text-hover-decoration-none"> Phone: </span>
-                  <a href="te:+971 52 982 8176">+971 52 982 8176</a>
+                  <a href="tel:+971 52 982 8176">+971 52 982 8176</a>
                   {{-- <a href="te:+971 58 598 6373">+971 58 598 6373</a>
                   <br />
                   <a href="te:+971 50 922 0172">+971 50 922 0172</a> --}}

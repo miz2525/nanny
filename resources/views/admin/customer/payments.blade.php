@@ -38,8 +38,9 @@
                             <th style="display: none;">ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone number</th>
-                            <th>Account created</th>
+                            <th>Phone Number</th>
+                            <th>Amount Paid</th>
+                            <th>Payment Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +51,8 @@
                             <td>{{$customer->email}}</td>
                             <td><a href="https://wa.me/{{$customer->phone}}" target="_blank">{{$customer->phone}}</a></td>
                             {{-- <td><a href="javascript:;">N/A</a></td> --}}
-                            <td>{{date('d M Y', strtotime($customer->created_at))}}</td>
+                            <td>AED {{GetCustomerPaymentDetail($customer)->amount/100}}</td>
+                            <td>{{date('d M Y', GetCustomerPaymentDetail($customer)->created)}}</td>
                         </tr>
                         @endforeach
                     </tbody>

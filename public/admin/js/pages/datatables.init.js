@@ -11,7 +11,11 @@ $(document).ready(function() {
         }
     });
     var a = $("#datatable-buttons").DataTable({
-        order: [[3, 'desc']],
+        order: [[0, 'desc']],
+        'columnDefs' : [
+            //hide the second & fourth column
+            { 'visible': false, 'targets': [0] }
+        ],
         lengthChange: !1,
         buttons: [{
             extend: "copy",

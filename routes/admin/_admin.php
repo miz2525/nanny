@@ -36,3 +36,5 @@ Route::post('/nanny/update_nanny_image/{image_id}', [NanniesController::class, '
 
 /** Customers Routes */
 Route::get('/customer', [CustomerController::class, 'index'])->name('customer');
+Route::get('/payments', [CustomerController::class, 'payments'])->name('customer.payments');
+

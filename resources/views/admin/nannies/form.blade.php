@@ -10,6 +10,32 @@
 
 <!-- Cropper css -->
 <link href="{{ asset('admin/libs/cropper/cropper.min.css') }}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{{ asset('admin/libs/intl-tel-input/css/intlTelInput.css') }}">
+<style>
+    .iti__flag {background-image: url("{{ asset('admin/libs/intl-tel-input/img/flags.png') }}");}
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .iti__flag {background-image: url("{{ asset('admin/libs/intl-tel-input/img/flags@2x.png') }}");}
+    }
+    .iti{
+        width: 100%
+    }
+
+    .parsley-errors-list {
+        list-style-type: none !important;
+        padding-left: 0px !important;
+        padding-top: 2px !important;
+    }
+
+    .parsley-error-bg {
+        border-color: red !important;
+    }
+
+    .parsley-errors-list>li>span {
+        font-family: "Circular Std", sans-serif;
+    }
+
+</style>
+
 @endsection
 
 @section('content')
@@ -671,6 +697,8 @@
 <!-- Plugins js -->
 <script src="{{ asset('admin/libs/cropper/cropper.min.js') }}"></script>
 
+<script src="{{ asset('admin/libs/intl-tel-input/js/intlTelInput.js') }}"></script>
+
 <script>
     $(".needs-validation").parsley();
 
@@ -722,7 +750,7 @@
                     $image.cropper({
                         viewMode: 1,
                         aspectRatio: 415 / 464,
-                        cropBoxResizable:false,
+                        // cropBoxResizable:false,
                         dragMode: 0,
                         center:true,
                         minContainerWidth: 765,
@@ -773,8 +801,26 @@
                 location.reload();
             }
         });
-      }
+    }
+
+    var mobileNum = intlTelInput(document.querySelector("#phone_number"), {
+        initialCountry: "auto",
+        geoIpLookup: function(success, failure) {
+            $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "";
+                success(countryCode);
+            });
+        },
+    });
 
 
 </script>
+
+@if(!isset($nanny))
+    <script>
+        mobileNum.promise.then(function(){
+            mobileNum.setNumber(`+${mobileNum.getSelectedCountryData().dialCode}`);
+        });
+    </script>
+@endif
 @endsection

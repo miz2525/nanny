@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('meta_keywords') Register with NannyGenie @endsection
+@section('meta_description') Register with NannyGenie and save time and energy in your process of finding the right nanny for your family and loved ones. @endsection
+
 @section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection
 
 @section('styles') <!-- Style Section --> @endsection

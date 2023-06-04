@@ -18,7 +18,13 @@ class CustomerController extends Controller
     
     public function index()
     {
-        $customers = User::all();
+        $customers = User::orderByDesc('id')->get();
         return view('admin.customer.index', compact('customers'));
+    }
+
+    public function payments()
+    {
+        $customers = User::where('is_paid', 1)->orderByDesc('id')->get();
+        return view('admin.customer.payments', compact('customers'));
     }
 }

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('meta_keywords') Login with NannyGenie @endsection
+@section('meta_description') Login with NannyGenie to discover all nanny profiles and select the one that fits with your family. @endsection
+
 @section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection
 
 @section('styles') <!-- Style Section --> @endsection

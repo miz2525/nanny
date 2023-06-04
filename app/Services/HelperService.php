@@ -172,4 +172,8 @@ class HelperService {
         }
         return $html;
     }
+
+    public static function GetCustomerPaymentDetail($customer){
+        return json_decode($customer->payment_detail);
+    }
 }

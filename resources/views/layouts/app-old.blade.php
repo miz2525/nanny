@@ -63,22 +63,7 @@
 
     @yield('footer')
 
-    
-  </div>
-  <!-- Plugin's Scripts -->
-  <script src="{{ asset('website/plugins/jquery/jquery.min.js') }}"></script>
-  <script src="{{ asset('website/plugins/jquery/jquery-migrate.min.js') }}"></script>
-  <script src="{{ asset('website/js/bootstrap.bundle.js') }}"></script>
-  <script src="{{ asset('website/plugins/nice-select/jquery.nice-select.min.js') }}"></script>
-  <script src="{{ asset('website/plugins/aos/aos.min.js') }}"></script>
-  <script src="{{ asset('website/plugins/counter-up/jquery.counterup.min.js') }}"></script>
-  <script src="{{ asset('website/plugins/slick/slick.min.js') }}"></script>
-  <script src="{{ asset('website/plugins/skill-bar/skill.bars.jquery.js') }}"></script>
-  <script src="{{ asset('website/plugins/isotope/isotope.pkgd.min.js') }}"></script>
-  <!-- Activation Script -->
-  <script src="{{ asset('website/js/menu.js') }}"></script>
-  <script src="{{ asset('website/js/custom.js') }}"></script>
-  <script src="{{ asset('website/plugins/type-js/typed.min.js') }}"></script>
+    <script src="{{ asset('website/plugins/type-js/typed.min.js') }}"></script>
     <script>
       var typed = new Typed('.highlight-text', {
         strings: ["newborn.", "toddlers.", "preschoolers.", "twins.", "teenagers.", "children of determination."],
@@ -90,6 +75,23 @@
         loop: true
       });
     </script>
+  </div>
+  <!-- Plugin's Scripts -->
+  <script src="{{ asset('website/plugins/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('website/plugins/jquery/jquery-migrate.min.js') }}"></script>
+  <script src="{{ asset('website/js/bootstrap.bundle.js') }}"></script>
+  <script src="{{ asset('website/plugins/fancybox/jquery.fancybox.min.js') }}"></script>
+  <script src="{{ asset('website/plugins/nice-select/jquery.nice-select.min.js') }}"></script>
+  <script src="{{ asset('website/plugins/aos/aos.min.js') }}"></script>
+  <script src="{{ asset('website/plugins/counter-up/jquery.counterup.min.js') }}"></script>
+  <script src="{{ asset('website/plugins/counter-up/waypoints.min.js') }}"></script>
+  <script src="{{ asset('website/plugins/slick/slick.min.js') }}"></script>
+  <script src="{{ asset('website/plugins/skill-bar/skill.bars.jquery.js') }}"></script>
+  <script src="{{ asset('website/plugins/isotope/isotope.pkgd.min.js') }}"></script>
+  <!--<script src="{{ asset('website/plugins/theme-mode-switcher/gr-theme-mode-switcher.js') }}"></script>-->
+  <!-- Activation Script -->
+  <script src="{{ asset('website/js/menu.js') }}"></script>
+  <script src="{{ asset('website/js/custom.js') }}"></script>
   @yield('scripts')
 </body>
 

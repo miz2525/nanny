@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('meta_keywords') Save Time with our Rigorous Process for Finding Trusted Caregivers @endsection
+@section('meta_description') Explore NannyGenie's pricing options for quality caregiver services. Our rigorous process saves you time, ensuring trusted and reliable nannies for your family's peace of mind. @endsection
+
 @section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection
 
 @section('styles') <!-- Style Section --> @endsection

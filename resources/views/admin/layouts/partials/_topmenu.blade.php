@@ -254,6 +254,12 @@
                 </a>
             </li>
 
+            <li class="dropdown d-none d-xl-block">
+                <a class="nav-link waves-effect waves-light" href="{{ route('admin.customer.payments') }}">
+                    Payments
+                </a>
+            </li>
+
         </ul>
         <div class="clearfix"></div>
     </div>

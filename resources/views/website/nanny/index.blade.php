@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('meta_keywords') All Nannies - Find Your Perfect Caregiver at NannyGenie @endsection
+@section('meta_description') Discover qualified nannies at Nanny Genie. Our rigorous process includes video interviews and reference checks, ensuring reliable and trustworthy caregivers for your family. @endsection
+
 @section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection
 
 @section('styles')
