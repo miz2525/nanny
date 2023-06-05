@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection
+@section('page-title') NannyGenie: Trusted, Experienced Nannies for Quality Childcare Services @endsection
 
 @section('styles') <!-- Style Section --> @endsection
 

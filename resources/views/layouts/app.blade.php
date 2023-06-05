@@ -5,14 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-  <meta name="keywords" content="@yield('meta_keywords','NannyGenie: Trusted, Experienced Nannies for Quality Childcare Services')">
+  
   <meta name="description" content="@yield('meta_description','Experience hassle-free nanny hiring with NannyGenie. Our trusted video interview process ensures quality childcare for your peace of mind. Discover more!')">
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>@yield('page-title', 'NannyGenie')</title>
+  <title>@yield('page-title', 'NannyGenie: Trusted, Experienced Nannies for Quality Childcare Services')</title>
   <link rel="shortcut icon" href="{{ asset('website/image/png/favicon.png') }}" type="image/x-icon">
   <!-- Bootstrap , fonts & icons  -->
   <link rel="stylesheet" href="{{ asset('website/css/bootstrap.css') }}">

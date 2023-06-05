@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('meta_keywords') Privacy & Policy for NannyGenie @endsection
+@section('page-title') Privacy & Policy for NannyGenie @endsection
 @section('meta_description') Read Nanny Genie's privacy policy to understand how we protect your personal information. Trust in our commitment to confidentiality and providing a secure environment for your family's childcare needs. @endsection
 
 @section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection

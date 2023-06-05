@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('meta_keywords') Eligibility Criteria for those interested in hiring a Nanny through Nanny Genie @endsection
+@section('page-title') Eligibility Criteria for those interested in hiring a Nanny through Nanny Genie @endsection
 @section('meta_description') Explore Nanny Genie's eligibility criteria for hiring a nanny. Discover the requirements and qualifications to ensure the best fit for your family's childcare needs. @endsection
 
 @section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection

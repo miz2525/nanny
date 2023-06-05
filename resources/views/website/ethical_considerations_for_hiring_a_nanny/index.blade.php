@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('meta_keywords') Ethical Considerations for Matching with, and Appointing a Nanny via NannyGenie @endsection
+@section('page-title') Ethical Considerations for Matching with, and Appointing a Nanny via NannyGenie @endsection
 @section('meta_description') Learn about the ethical considerations for hiring a nanny at NannyGenie. Discover our commitment to integrity, fairness, and respect in providing quality childcare services for your family. @endsection
 
 @section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection

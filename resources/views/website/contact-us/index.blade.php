@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
-@section('meta_keywords') Contact Nanny Genie: Reach Out to Our Hands-On Team @endsection
+@section('page-title') Contact Nanny Genie: Reach Out to Our Hands-On Team @endsection
 @section('meta_description') Contact our hands-on team at NannyGenie for exceptional nanny services. We are here to provide you with trusted and reliable caregivers for your child's well-being. @endsection
-
-@section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection
 
 @section('styles') <!-- Style Section --> @endsection
 

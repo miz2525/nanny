@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('meta_keywords') Terms and Conditions for NannyGenie @endsection
+@section('page-title') Terms and Conditions for NannyGenie @endsection
 @section('meta_description') Read the terms and conditions of Nanny Genie's services. Gain a clear understanding of our policies to ensure a smooth and satisfactory experience in hiring trusted caregivers for your family. @endsection
 
 @section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection
