@@ -409,9 +409,9 @@
               <li class="widget__recent-post__single">
                 <h4 class="widget__recent-post__title">Salary expectation</h4>
                 <p class="widget__recent-post__date">
-                  {{number_format($nanny->salary_live_in, 0)}} AED (Live in)
+                  {{$nanny->salary_live_in}} (Live in)
                   <br />
-                  {{number_format($nanny->salary_live_out, 0)}} AED (Live out)
+                  {{$nanny->salary_live_out}} (Live out)
                 </p>
               </li>
               <li class="widget__recent-post__single">
@@ -420,7 +420,7 @@
               </li>
               <li class="widget__recent-post__single">
                 <h4 class="widget__recent-post__title">Visa status</h4>
-                <p class="widget__recent-post__date">{{config('nanny.visa_status')[$nanny->visa_status]}}</p>
+                <p class="widget__recent-post__date">{{config('nanny.visa_status')[$nanny->visa_status]}} @if($nanny->visa_status_info) - {{$nanny->visa_status_info}} @endif</p>
               </li>
               <li class="widget__recent-post__single">
                 <h4 class="widget__recent-post__title">Education level</h4>

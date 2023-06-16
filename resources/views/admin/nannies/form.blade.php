@@ -248,14 +248,26 @@
                     <div class="col-sm-6">
                         <div class="mb-3">
                             <label for="salary_live_in" class="form-label">Salary (live-in)</label>
-                            <input type="number" id="salary_live_in" class="form-control" placeholder="Enter amount in AED" name="nanny[salary_live_in]" value="{{isset($nanny)? $nanny->salary_live_in : ''}}">
+                            {{-- <input type="number" id="salary_live_in" class="form-control" placeholder="Enter amount in AED" name="nanny[salary_live_in]" value="{{isset($nanny)? $nanny->salary_live_in : ''}}"> --}}
+                            <select class="form-select" id="salary_live_in" name="nanny[salary_live_in]" required>
+                                <option value="">Select Option</option>
+                                @foreach (config('nanny.salary_ranges') as $salary_range)
+                                    <option value="{{ $salary_range }}" @if(isset($nanny) && $nanny->salary_live_in==$salary_range) selected @endif>{{ $salary_range }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
                     <div class="col-sm-6">
                         <div class="mb-3">
                             <label for="salary_live_out" class="form-label">Salary (live-out)</label>
-                            <input type="number" id="salary_live_out" class="form-control" placeholder="Enter amount in AED" name="nanny[salary_live_out]" value="{{isset($nanny)? $nanny->salary_live_out : ''}}">
+                            {{-- <input type="number" id="salary_live_out" class="form-control" placeholder="Enter amount in AED" name="nanny[salary_live_out]" value="{{isset($nanny)? $nanny->salary_live_out : ''}}"> --}}
+                            <select class="form-select" id="salary_live_out" name="nanny[salary_live_out]" required>
+                                <option value="">Select Option</option>
+                                @foreach (config('nanny.salary_ranges') as $salary_range)
+                                    <option value="{{ $salary_range }}" @if(isset($nanny) && $nanny->salary_live_out==$salary_range) selected @endif>{{ $salary_range }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -270,6 +282,12 @@
                             <option value="{{$VSK}}" @if(isset($nanny) && $nanny->visa_status==$VSK) selected @endif>{{$VSV}}</option>
                         @endforeach
                     </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="visa-status-info" class="form-label">More information about the visa <span class="text-muted">(optional)</span></label>
+                    <input type="text" id="visa-status-info" class="form-control" name="visa_status_info" placeholder="Helping text" value="{{isset($nanny)? $nanny->visa_status_info : ''}}">
+                    <span class="help-block"><small>Add more information about the visa</small></span>
                 </div>
 
                 <div class="mb-3">
@@ -766,7 +784,7 @@
     });
 
     function save_image(upload_url){
-        let imgSrc = cropper.getCroppedCanvas().toDataURL();
+        let imgSrc = cropper.getCroppedCanvas({width:415, height:464}).toDataURL();
         imageObj.src = imgSrc;
         var html = `<div class="col-sm-3" id="nanny-cache-image">
                         <img src="${imgSrc}" alt="image" class="img-fluid avatar-xl rounded mb-1">

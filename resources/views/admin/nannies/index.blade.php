@@ -60,7 +60,7 @@
                                 <td>{{ $nanny->id }}</td>
                                 <td>{{ $nanny->first_name }}</td>
                                 <td>{{ $nanny->family_name }}</td>
-                                <td><a href="">{{ $nanny->phone_number }}</a></td>
+                                <td><a href="https://web.whatsapp.com/send?phone=$phone&text=Hi, I am contacting you on behalf of NannyGenie" target="_blank">{{ $nanny->phone_number }}</a></td>
                                 <td>{!! GetNannyStatusSpan($nanny->status) !!}</td>
                                 <td>{{date('d/m/Y', strtotime($nanny->created_at))}}</td>
                                 <td>{{date('d/m/Y', strtotime($nanny->updated_at))}}</td>

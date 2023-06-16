@@ -32,4 +32,5 @@ Route::get('/eligibility-criteria-for-hiring-a-nanny', [HomeController::class,'e
 
 Route::get('purchase/{price_id}', [HomeController::class,'purchase'])->name('purchase');
 Route::get('checkout-success', [HomeController::class,'checkout_success'])->name('checkout-success');
-Route::get('checkout-cancel', [HomeController::class,'checkout_cancel'])->name('checkout-cancel');
+Route::get('checkout-cancel', [HomeController::class,'checkout_failed'])->name('checkout-cancel');
+Route::get('send-mail-test', [HomeController::class,'send_mail_test'])->name('send-mail-test');

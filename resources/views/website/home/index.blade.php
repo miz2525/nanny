@@ -376,4 +376,47 @@
   @include('layouts._include._footer')
 @endsection
 
-@section('scripts') <!-- Script Section --> @endsection
+@section('scripts')
+
+<script>
+  $(document).ready(function() {
+  const apiKey = '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';
+  const apiEndpoint = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+
+  function generateMetaTitle(paragraph) {
+    $.ajax({
+      url: apiEndpoint,
+      type: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey
+      },
+      data: JSON.stringify({
+        prompt: paragraph,
+        max_tokens: 10,
+        temperature: 0.3,
+        n: 1,
+        stop: null,
+        temperature: 0.3,
+        top_p: 1.0,
+        frequency_penalty: 0.0,
+        presence_penalty: 0.0,
+        model: 'davinci-codex'
+      }),
+      success: function(response) {
+        const metaTitle = response.choices[0].text.trim();
+        console.log(metaTitle);
+      },
+      error: function(xhr, textStatus, errorThrown) {
+        console.log('Error:', errorThrown);
+      }
+    });
+  }
+
+  const paragraph = "The benefits of regular exercise are numerous. It improves cardiovascular health, increases energy levels, and helps manage weight. Regular exercise also boosts mood and reduces the risk of chronic diseases like diabetes and heart disease.";
+
+  generateMetaTitle(paragraph);
+});
+</script>
+
+@endsection

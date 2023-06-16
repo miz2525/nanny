@@ -17,7 +17,8 @@ return [
         'grace_period'=>'Grace period',
         'visit_visa'=>'Visit visa',
         'overstay'=>'Overstay',
-        'dependent_visa'=>'Dependent visa'
+        'dependent_visa'=>'Dependent visa',
+        'freelance_own_visa'=>'Freelance / Own visa'
     ],
     'education_level' => [
         'less_than_high_school'=>'Less than high school',
@@ -59,6 +60,16 @@ return [
         'last_one' => 'WORK BACKGROUND - LAST ONE',
         'prior_to_last_one' => 'WORK BACKGROUND - PRIOR TO LAST ONE',
         'prior_to_prior_last_one' => 'WORK BACKGROUND - PRIOR TO PRIOR LAST ONE'
+    ],
+    'salary_ranges' => [
+        '0 to 1,000 AED',
+        '1,000 AED to 2,000 AED',
+        '2,000 AED to 2,500 AED',
+        '2,500 AED to 3,000 AED',
+        '3,000 AED to 3,500 AED',
+        '3,500 AED to 4,000 AED',
+        '4,000 AED to 5,000 AED',
+        'more than 5,000 AED'
     ]
 
 ];

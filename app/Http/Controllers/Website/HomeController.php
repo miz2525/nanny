@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
+use App\Mail\PaymentConfirmed;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use stdClass;
 
 class HomeController extends Controller
 {
@@ -82,6 +86,14 @@ class HomeController extends Controller
 
         curl_close($curl);
         $response = json_decode($response);
+
+        try {
+            $user = $request->user();
+            Mail::to('oana.sarmasan@gmail.com', 'mihai@teamedia.ro', 'hello@nannygenie.com', 'addi.ahmad9@gmail.com')->send(new PaymentConfirmed($user));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
         $request->user()->update([
             'is_paid' => 1,
             'product_id' => env('STRIPE_PRICE_ID'),
@@ -94,5 +106,12 @@ class HomeController extends Controller
     public function checkout_failed(Request $request)
     {
         dd($request->all(), "FAILED");
+    }
+
+    public function send_mail_test(){
+        // $user = User::find(2);
+        $user = new stdClass();
+        $user->email = 'addi.ahmad9@gmail.com';
+        Mail::to(['addi.ahmad9@gmail.com', 'addi@teamedia.ro'])->send(new PaymentConfirmed($user));
     }
 }

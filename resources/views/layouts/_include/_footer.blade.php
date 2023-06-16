@@ -9,9 +9,9 @@
             <div class="brand-logo mt-1">
               <a href="{{ route('home') }}">
                 <!-- light version logo (logo must be black)-->
-                <img src="{{ asset('website/image/png/logo-dark.png') }}" alt="" class="light-version-logo">
+                <img src="{{ asset('website/image/svg/logo-dark.svg') }}" alt="" class="light-version-logo">
                 <!-- Dark version logo (logo must be White)-->
-                <img src="{{ asset('website/image/png/logo-white.png') }}" alt="" class="dark-version-logo">
+                <img src="{{ asset('website/image/svg/logo-white.svg') }}" alt="" class="dark-version-logo">
               </a>
             </div>
             <p class="footer-widgets__text mt-5">
