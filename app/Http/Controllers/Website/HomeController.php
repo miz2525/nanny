@@ -50,6 +50,26 @@ class HomeController extends Controller
     {
         return view('website.eligibility_criteria_for_hiring_a_nanny.index');
     }
+
+    public function blog()
+    {
+        return view('website.blog.index');
+    }
+
+    public function full_time_nanny_dubai()
+    {
+        return view('website.blog.full_time_nanny_dubai');
+    }
+
+    public function babysitter_in_dubai()
+    {
+        return view('website.blog.babysitter_in_dubai');
+    }
+
+    public function find_a_new_job()
+    {
+        return view('website.find_a_new_job.index');
+    }
     
     public function purchase(Request $request, $price_id)
     {

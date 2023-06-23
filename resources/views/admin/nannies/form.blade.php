@@ -159,6 +159,37 @@
         </div> <!-- end card -->
 
 
+        <div class="card">
+            <div class="card-body" id="tooltip-container">
+                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Search Engine Optimization</h5>
+
+                <div class="mb-3">
+                    <label for="nanny-meta-title" class="form-label">Meta title <i class="mdi mdi-information-outline" data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Tooltip on top"></i></label>
+                    <textarea class="form-control" id="nanny-meta-title" rows="3" name="nanny[meta_title]">{{isset($nanny->meta_title)? $nanny->meta_title : ''}}</textarea>
+                    <span class="help-block">
+                        <small>
+                            Ideally: 50-60 characters
+                            <br />
+                            ChatGPT prompt: using the text below, generate an SEO friendly title compressed in 6 to 7 words
+                        </small>
+                    </span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="nanny-meta-description" class="form-label">Meta description <i class="mdi mdi-information-outline" data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Tooltip on top"></i></label>
+                    <textarea class="form-control" id="nanny-meta-description" rows="3" name="nanny[meta_description]">{{isset($nanny->meta_description)? $nanny->meta_description : ''}}</textarea>
+                    <span class="help-block">
+                        <small>
+                            Ideally: 120-155 characters
+                            <br />
+                            ChatGPT prompt: using the text below, generate an SEO meta description compressed in 18 to 25 words
+                        </small>
+                    </span>
+                </div>
+
+
+            </div>
+        </div> <!-- end card -->
 
 
         <div class="card">
@@ -286,7 +317,7 @@
 
                 <div class="mb-3">
                     <label for="visa-status-info" class="form-label">More information about the visa <span class="text-muted">(optional)</span></label>
-                    <input type="text" id="visa-status-info" class="form-control" name="visa_status_info" placeholder="Helping text" value="{{isset($nanny)? $nanny->visa_status_info : ''}}">
+                    <input type="text" id="visa-status-info" class="form-control" name="nanny[visa_status_info]" placeholder="Helping text" value="{{isset($nanny)? $nanny->visa_status_info : ''}}">
                     <span class="help-block"><small>Add more information about the visa</small></span>
                 </div>
 

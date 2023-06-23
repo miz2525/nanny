@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
-@section('page-title') All Nannies - Find Your Perfect Caregiver at NannyGenie @endsection
-@section('meta_description') Discover qualified nannies at Nanny Genie. Our rigorous process includes video interviews and reference checks, ensuring reliable and trustworthy caregivers for your family. @endsection
-
+@section('page-title')
+@php echo ($nanny->meta_title)? $nanny->meta_title : 'All Nannies - Find Your Perfect Caregiver at NannyGenie'; @endphp
+@endsection
+@section('meta_description')
+@php echo ($nanny->meta_description)? $nanny->meta_description : 'Discover qualified nannies at Nanny Genie. Our rigorous process includes video interviews and reference checks, ensuring reliable and trustworthy caregivers for your family.'; @endphp
+@endsection
 @section('page-title') {{ config('app.name', 'NannyGenie') }} @endsection
 
 @section('styles')

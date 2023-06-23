@@ -28,6 +28,10 @@ Route::get('/terms', [HomeController::class,'terms'])->name('terms');
 Route::get('/privacy-policy', [HomeController::class,'privacy_policy'])->name('privacy-policy');
 Route::get('/ethical-considerations-for-hiring-a-nanny', [HomeController::class,'ethical_considerations_for_hiring_a_nanny'])->name('ethical-considerations-for-hiring-a-nanny');
 Route::get('/eligibility-criteria-for-hiring-a-nanny', [HomeController::class,'eligibility_criteria_for_hiring_a_nanny'])->name('eligibility-criteria-for-hiring-a-nanny');
+Route::get('/blog', [HomeController::class,'blog'])->name('blog');
+Route::get('/full-time-nanny-dubai', [HomeController::class,'full_time_nanny_dubai'])->name('full-time-nanny-dubai');
+Route::get('/babysitter-in-dubai', [HomeController::class,'babysitter_in_dubai'])->name('babysitter-in-dubai');
+Route::get('/find-a-new-job', [HomeController::class,'find_a_new_job'])->name('find-a-new-job');
 
 
 Route::get('purchase/{price_id}', [HomeController::class,'purchase'])->name('purchase');

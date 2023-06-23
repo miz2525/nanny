@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Cashier\User;
+use App\Models\Nanny;
 use Laravel\Cashier\Cashier;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,5 +32,10 @@ class AppServiceProvider extends ServiceProvider
         // StoreCountriesCache();
         // StoreCitiesCache();
         // StoreLanguagesCache();
+
+        app('view')->composer('website.blog.nannyview', function ($view) {
+            $nannies = Nanny::where('status', 'active')->orderByDesc('id')->take(7)->get();
+            $view->with(compact('nannies'));
+        });
     }
 }

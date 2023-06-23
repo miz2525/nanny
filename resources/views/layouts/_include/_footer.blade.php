@@ -57,6 +57,12 @@
                 <a href="{{ route('contact-us') }}">Contact</a>
               </li>
               <li>
+                <a href="{{ route('blog') }}">Our Blog</a>
+              </li>
+              <li>
+                <a href="{{ route('find-a-new-job') }}">Find a new Nanny job</a>
+              </li>
+              <li>
                 <a href="{{ route('terms') }}">Terms & conditions</a>
               </li>
               <li>
