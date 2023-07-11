@@ -109,9 +109,9 @@ class HomeController extends Controller
 
         try {
             $user = $request->user();
-            Mail::to('oana.sarmasan@gmail.com', 'mihai@teamedia.ro', 'hello@nannygenie.com', 'addi.ahmad9@gmail.com')->send(new PaymentConfirmed($user));
+            Mail::to(['oana.sarmasan@gmail.com', 'mihai@teamedia.ro', 'hello@nannygenie.com', 'addi.ahmad9@gmail.com'])->send(new PaymentConfirmed($user));
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
 
         $request->user()->update([
@@ -132,6 +132,11 @@ class HomeController extends Controller
         // $user = User::find(2);
         $user = new stdClass();
         $user->email = 'addi.ahmad9@gmail.com';
+        Mail::to(['addi.ahmad9@gmail.com', 'addi@teamedia.ro', 'mihai@teamedia.ro'])->send(new PaymentConfirmed($user));
+    }
+
+    public function send_mail_by_id($customer_id){
+        $user = User::find($customer_id);
         Mail::to(['addi.ahmad9@gmail.com', 'addi@teamedia.ro'])->send(new PaymentConfirmed($user));
     }
 }

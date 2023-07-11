@@ -44,9 +44,9 @@
       </div>
       <div class="col-xxl-7 col-xl-6 col-lg-5 col-md-9 col-xs-11 order-1 order-lg-2">
         <div class="welcome-img welcome-img--l9 video-box">
-          <img class="w-100" src="{{ asset('website/image/find-a-new-job.jpg') }}" alt="find a new job" />
+          <img class="w-100" src="{{ asset('website/image/home-8/hero-img.png') }}" alt="" />
           <!-- Video Button -->
-          <a class="video-btn btn-electric-violet-2 popup-btn" href="https://www.youtube.com/watch?v=DgEpIseZ8EQ">
+          <a class="video-btn btn-electric-violet-2 popup-btn" href="https://www.youtube.com/watch?v=LWZ7iytIA6k">
             <i class="fa fa-play"></i>
           </a>
         </div>
@@ -54,8 +54,6 @@
     </div>
   </div>
 </div>
-
-
 
 <div class="faqs-area pricing-table__faqs bg-default-6">
   <div class="container">
