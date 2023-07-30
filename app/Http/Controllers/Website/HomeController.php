@@ -109,7 +109,7 @@ class HomeController extends Controller
 
         try {
             $user = $request->user();
-            Mail::to(['oana.sarmasan@gmail.com', 'mihai@teamedia.ro', 'hello@nannygenie.com', 'addi.ahmad9@gmail.com'])->send(new PaymentConfirmed($user));
+            Mail::to(['oana.sarmasan@gmail.com', 'mihai@teamedia.ro', 'hello@nannygenie.com', 'addi.ahmad9@gmail.com', 'nannygenie2023@gmail.com'])->send(new PaymentConfirmed($user));
         } catch (\Throwable $th) {
             throw $th;
         }

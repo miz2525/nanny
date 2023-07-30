@@ -97,10 +97,10 @@
                 <div class="card card-body">
                   {!! $background->work_description !!}
 
-                  @if ($background->status)
+                  {{-- @if ($background->status) --}}
                     <h4 class="section-subtitle-small mt-2">{{$background->reference_title}}</h4>
                     {!! $background->reference_description !!}
-                  @endif
+                  {{-- @endif --}}
                   
                 </div>
               </div>

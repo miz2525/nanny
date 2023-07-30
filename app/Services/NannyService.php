@@ -30,12 +30,23 @@ class NannyService {
             if(isset($nanny['age_group_experience'])){
                 $nanny['age_group_experience'] = implode(',', $nanny['age_group_experience']);
             }
-
-            if(isset($nanny['skills'])){
-                $nanny['skills'] = implode(',', $nanny['skills']);
+            
+            if(isset($nanny['child_cares'])){
+                $nanny['child_cares'] = implode(',', $nanny['child_cares']);
+            }else{
+                $nanny['child_cares'] = '';
             }
-            if(isset($nanny['needs_support_with'])){
-                $nanny['needs_support_with'] = implode(',', $nanny['needs_support_with']);
+            
+            if(isset($nanny['housekeeping'])){
+                $nanny['housekeeping'] = implode(',', $nanny['housekeeping']);
+            }else{
+                $nanny['housekeeping'] = '';
+            }
+            
+            if(isset($nanny['cooking_meal_prep'])){
+                $nanny['cooking_meal_prep'] = implode(',', $nanny['cooking_meal_prep']);
+            }else{
+                $nanny['cooking_meal_prep'] = '';
             }
             
             $findNanny = Nanny::find($nanny_id);

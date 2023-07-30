@@ -36,7 +36,7 @@
             </div>
 
           <div class="welcome-btn-group" data-aos="fade-up" data-aos-duration="500" data-aos-delay="700" data-aos-once="true">
-            <a class="btn btn--lg-2 btn-electric-violet-2 me-3 text-white shadow--electric-violet-2 rounded-50 me-3" href="https://wa.me/971509220172?text=Hi, I have a question about NannyGenie" target="_blank">
+            <a class="btn btn--lg-2 btn-electric-violet-2 me-3 text-white shadow--electric-violet-2 rounded-50 me-3" href="https://wa.me/971529828176?text=Hi, I have a question about NannyGenie" target="_blank">
                 Text us on WhatsApp
             </a>
           </div>
@@ -189,7 +189,7 @@
         <p class="">
             Haven’t got your answer?
             <br />
-            <a class="btn-link text-electric-violet-2 ms-2" href="https://wa.me/971509220172?text=Hi, I have a question about NannyGenie" target="_blank">
+            <a class="btn-link text-electric-violet-2 ms-2" href="https://wa.me/971529828176?text=Hi, I have a question about NannyGenie" target="_blank">
                 Reach out to us via WhatsApp
             </a>
         </p>

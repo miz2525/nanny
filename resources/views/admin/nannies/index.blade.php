@@ -64,7 +64,7 @@
                                 <td>{!! GetNannyStatusSpan($nanny->status) !!}</td>
                                 <td>{{date('d/m/Y', strtotime($nanny->created_at))}}</td>
                                 <td>{{date('d/m/Y', strtotime($nanny->updated_at))}}</td>
-                                <td><a href="{{ route('admin.nanny.edit', $nanny->id) }}">Edit</a></td>
+                                <td><a href="{{ route('admin.nanny.edit', $nanny->id) }}">Edit</a><i class="mdi mdi-circle-small"></i><a href="{{ route('nanny.profile', $nanny->id) }}" target="_blank">View</a></td>
                             </tr>
                         @endforeach
                         

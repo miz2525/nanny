@@ -394,7 +394,7 @@
 
                 <div class="mb-3">
                     <label for="work_title_{{$BTK}}" class="form-label">Work title @if($BTK=='last_one') <span class="text-danger">*</span> @endif </label>
-                    <input type="text" id="work_title_{{$BTK}}" class="form-control" placeholder="e.g : Nanny / House Help | Dubai | Lebanese Family 2 kids, age 3, infant" name="nannies_backgrounds[{{$BTK}}][work_title]" value="{{($background)? $background['work_title'] : ''}}" @if($BTK=='last_one') required @endif>
+                    <input type="text" id="work_title_{{$BTK}}" class="form-control" placeholder="e.g : Nanny / House Help | Dubai | Lebanese Family 2 kids, age 3, infant" name="nannies_backgrounds[{{$BTK}}][work_title]" value="{{($background)? $background->work_title : ''}}" @if($BTK=='last_one') required @endif>
                     <span class="help-block"><small>Example: Nanny / House Help | Dubai | Lebanese Family 2 kids, age 3, infant</small></span>
                 </div>
 
@@ -408,11 +408,11 @@
                     <label class="mb-2">Status @if($BTK=='last_one')<span class="text-danger">*</span>@endif</label>
                     <br/>
                     <div class="radio form-check-inline">
-                        <input type="radio" id="status_{{$BTK}}_1" value="1" name="nannies_backgrounds[{{$BTK}}][status]" @if(isset($backgrounds)) @if($background && $background['status']) checked @endif  @else checked @endif>
+                        <input type="radio" id="status_{{$BTK}}_1" value="1" name="nannies_backgrounds[{{$BTK}}][status]" @if(isset($nanny)) @if($background && $background['status']==1) checked @endif  @else checked @endif>
                         <label for="status_{{$BTK}}_1"> Checked </label>
                     </div>
                     <div class="radio form-check-inline">
-                        <input type="radio" id="status_{{$BTK}}_0" value="0" name="nannies_backgrounds[{{$BTK}}][status]" @if(isset($backgrounds)) @if($background && !$background['status']) checked @endif  @endif>
+                        <input type="radio" id="status_{{$BTK}}_0" value="0" name="nannies_backgrounds[{{$BTK}}][status]" @if(isset($nanny)) @if($background && $background['status']==0) checked @endif  @endif>
                         <label for="status_{{$BTK}}_0"> Not checked </label>
                     </div>
                 </div>
@@ -534,14 +534,14 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Skills</h5>
+                <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Under Childcare</h5>
 
                 <div class="row">
-                    @foreach (config('nanny.skills') as $skillKey=>$skillValue)
+                    @foreach (config('nanny.child_care') as $childCareKey=>$childCareValue)
                         <div class="col-4">
                             <div class="form-check mb-2 form-check-primary">
-                                <input class="form-check-input" type="checkbox" id="{{$skillKey}}" value="{{$skillKey}}" name="nanny[skills][]" @if(isset($nanny)) @if(in_array($skillKey, explode(',', $nanny->skills))) checked @endif @endif>
-                                <label class="form-check-label" for="{{$skillKey}}">{{$skillValue}}</label>
+                                <input class="form-check-input" type="checkbox" id="{{$childCareKey}}" value="{{$childCareKey}}" name="nanny[child_cares][]" @if(isset($nanny)) @if(in_array($childCareKey, explode(',', $nanny->child_cares))) checked @endif @endif>
+                                <label class="form-check-label" for="{{$childCareKey}}">{{$childCareValue}}</label>
                             </div>
                         </div>
                     @endforeach
@@ -554,14 +554,34 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Needs support with</h5>
+                <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Housekeeping</h5>
 
                 <div class="row">
-                    @foreach (config('nanny.needs_support_with') as $NSWK=>$NSWV)
+                    @foreach (config('nanny.housekeeping') as $HKK=>$HKV)
                         <div class="col-4">
                             <div class="form-check mb-2 form-check-primary">
-                                <input class="form-check-input" type="checkbox" id="{{$NSWK}}" value="{{$NSWK}}" name="nanny[needs_support_with][]" @if(isset($nanny)) @if(in_array($NSWK, explode(',', $nanny->needs_support_with))) checked @endif @endif>
-                                <label class="form-check-label" for="{{$NSWK}}">{{$NSWV}}</label>
+                                <input class="form-check-input" type="checkbox" id="{{$HKK}}" value="{{$HKK}}" name="nanny[housekeeping][]" @if(isset($nanny)) @if(in_array($HKK, explode(',', $nanny->housekeeping))) checked @endif @endif>
+                                <label class="form-check-label" for="{{$HKK}}">{{$HKV}}</label>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+            </div>
+        </div> <!-- end card -->
+
+
+        
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Housekeeping</h5>
+
+                <div class="row">
+                    @foreach (config('nanny.cooking_meal_prep') as $CMPK=>$CMPV)
+                        <div class="col-4">
+                            <div class="form-check mb-2 form-check-primary">
+                                <input class="form-check-input" type="checkbox" id="{{$CMPK}}" value="{{$CMPK}}" name="nanny[cooking_meal_prep][]" @if(isset($nanny)) @if(in_array($CMPK, explode(',', $nanny->cooking_meal_prep))) checked @endif @endif>
+                                <label class="form-check-label" for="{{$CMPK}}">{{$CMPV}}</label>
                             </div>
                         </div>
                     @endforeach

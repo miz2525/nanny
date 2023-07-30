@@ -36,25 +36,22 @@ return [
         'twins'=>'twins',
         'teenagers'=>'teenagers'
     ],
-    'skills' => [
-        'skill1' => 'Skill 1',
-        'skill2' => 'Skill 2',
-        'skill3' => 'Skill 3',
-        'skill4' => 'Skill 4',
-        'skill5' => 'Skill 5',
-        'skill6' => 'Skill 6',
-        'skill7' => 'Skill 7',
-        'skill8' => 'Skill 8'
+    'child_care' => [
+        'children_of_determination' => 'Children Of Determination',
+        'neurodiverse_children' => 'Neurodiverse Children',
+        'cpr' => 'CPR',
+        'arts_crafts' => 'Arts & Crafts',
+        'education' => 'Education'
     ],
-    'needs_support_with' => [
-        'support1' => 'Support 1',
-        'support2' => 'Support 2',
-        'support3' => 'Support 3',
-        'support4' => 'Support 4',
-        'support5' => 'Support 5',
-        'support6' => 'Support 6',
-        'support7' => 'Support 7',
-        'support8' => 'Support 8'
+    'housekeeping' => [
+        'household_cleaning' => 'Household Cleaning',
+        'laundry_ironing' => 'Laundry & Ironing',
+        'space_organizing' => 'Space Organizing'
+    ],
+    'cooking_meal_prep' => [
+        'no_cooking_experience' => 'No Cooking Experience',
+        'basic_cooking' => 'Basic Cooking',
+        'experienced' => 'Experienced'
     ],
     'background_types' => [
         'last_one' => 'WORK BACKGROUND - LAST ONE',
