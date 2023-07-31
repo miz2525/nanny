@@ -71,7 +71,7 @@
         <div class="modal-content">
             <form action="{{ route('admin.customer.change-status') }}" method="POST">
                 @csrf
-                <input type="text" name="customer_id" id="customer_id">
+                <input type="hidden" name="customer_id" id="customer_id">
                 <div class="modal-header">
                     <h4 class="modal-title" id="standard-modalLabel">Edit customer</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
