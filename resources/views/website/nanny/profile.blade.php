@@ -355,7 +355,7 @@
             </div>
           </section>
 
-          @if(Auth::check() && Auth::user()->is_paid)
+          @if((Auth::check() && Auth::user()->is_paid) || Auth::user()->status=='approved')
           <section class="widget">
             <h3 class="widget__title">Contact details</h3>
             <p class="">Contact details are only visible to paid customers</p>
