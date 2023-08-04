@@ -115,6 +115,8 @@
               <div class="card card-jobs flex-row justify-content-between align-items-center flex-wrap text-center text-md-start">
                 <div class="card-jobs__content">
                   <h2 class="card-jobs__content__heading">Contact details</h2>
+
+                  @if(Auth::user()->status=='approved')
                   <p class="mt--20">
                       Full name:
                       <b>
@@ -126,13 +128,21 @@
                           {{$nanny->phone_number}}
                       </b>
                   </p>
+                  @else
+                  <p class="mt--20">
+                      Phone number:
+                      <b>
+                          +971 52 982 8176
+                      </b>
+                  </p>
+                  @endif
                 </div>
               </div>
             </section>
           @else
             
             @if(Auth::check())
-            {{-- <section class="contact-form mt-7 mb-4">
+            <section class="contact-form mt-7 mb-4">
               <div class="card card-jobs flex-row justify-content-between align-items-center flex-wrap text-center text-md-start">
                 <div class="card-jobs__content">
                   <h2 class="card-jobs__content__heading">Contact details</h2>
@@ -147,19 +157,6 @@
                 </div>
                 <div class="card-job__btn mx-auto mx-md-0 mt-2 mt-md-0">
                   <button class="btn btn-primary shadow--primary-6 rounded-50 text-white d-block my-2" onclick="window.location='/pricing'">Go to payment</button>
-                </div>
-              </div>
-            </section> --}}
-            <section class="contact-form mt-7 mb-4">
-              <div class="card card-jobs flex-row justify-content-between align-items-center flex-wrap text-center text-md-start">
-                <div class="card-jobs__content">
-                  <h2 class="card-jobs__content__heading">Contact details</h2>
-                  <p class="mt--20">
-                      Phone number:
-                      <b>
-                        +971 52 982 8176
-                      </b>
-                  </p>
                 </div>
               </div>
             </section>
@@ -355,12 +352,13 @@
             </div>
           </section>
 
-          @if((Auth::check() && Auth::user()->is_paid) || Auth::user()->status=='approved')
+          @if((Auth::check() && Auth::user()->is_paid))
           <section class="widget">
             <h3 class="widget__title">Contact details</h3>
             <p class="">Contact details are only visible to paid customers</p>
             <div class="welcome-btn-group--l3">
                 <div class="welcome-btn-group--l3">
+                    @if(Auth::user()->status=='approved')
                     <p class="mt--20">
                         Full name:
                         <b>
@@ -372,26 +370,20 @@
                             {{$nanny->phone_number}}
                         </b>
                     </p>
+                    @else
+                    <p class="mt--20">
+                        Phone number:
+                        <b>
+                            +971 52 982 8176
+                        </b>
+                    </p>
+                    @endif
                 </div>
             </div>
           </section>
           @else
             @if(Auth::check())
-            <section class="widget">
-              <h3 class="widget__title">Contact details</h3>
-              <p class="">Contact details are only visible to paid customers</p>
-              <div class="welcome-btn-group--l3">
-                  <div class="welcome-btn-group--l3">
-                      <p class="mt--20">
-                          Phone number:
-                          <b>
-                            +971 52 982 8176
-                          </b>
-                      </p>
-                  </div>
-              </div>
-            </section>
-              {{-- <section class="widget">
+              <section class="widget">
                 <h3 class="widget__title">Contact details</h3>
                 <p class="">Contact details are only visible to paid customers</p>
                 <div class="welcome-btn-group--l3">
@@ -399,7 +391,7 @@
                     Go to payment page
                   </a>
                 </div>
-              </section> --}}
+              </section>
             @else
               <section class="widget">
                 <h3 class="widget__title">Contact details</h3>

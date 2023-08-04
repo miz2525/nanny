@@ -102,4 +102,8 @@ class NanniesController extends Controller
         // MediaService::nanny_images($nanny_id, $request->nanny_images);
         MediaService::nanny_image($nanny_id, $request->nanny_image);
     }
+    function load_nanny_profile($nanny_id){
+        $nanny = Nanny::find($nanny_id);
+        return view('admin.nannies.whatsapp-modal', compact('nanny'));
+    }
 }
