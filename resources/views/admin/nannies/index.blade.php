@@ -79,6 +79,10 @@
                                     <a href="{{ route('nanny.profile', $nanny->id) }}" target="_blank">View</a>
                                     <i class="mdi mdi-circle-small"></i>
                                     <a href="javascript:;" onclick="LoadNannyProfile({{$nanny->id}})">WhatsApp</a>
+                                    @if($nanny->status=='under_review')
+                                        <i class="mdi mdi-circle-small"></i>
+                                        <a href="javascript:;" class="text-danger" onclick="DeleteNannyProfile({{$nanny->id}})">Delete</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -123,6 +127,29 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<!-- Danger Alert Modal -->
+<div id="deleteNanny" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content modal-filled bg-danger">
+            <div class="modal-body p-4">
+                <form action="{{route('admin.nanny.delete')}}" method="POST">
+                    @csrf
+                    <input type="hidden" id="deleted_nanny_id" name="nanny_id">
+                    <div class="text-center">
+                        <i class="mdi mdi-trash-can-outline h1 text-white"></i>
+                        <h4 class="mt-2 text-white">Are you sure?</h4>
+                        <p class="mt-3 text-white">
+                            This action is irreversible, and all data associated to this nanny will be deleted.
+                        </p>
+                        <button type="submit" class="btn btn-light my-2 mb-2">Yes, delete it</button>
+                        <br />
+                        <a href="javascript:;" class="text-white" data-bs-dismiss="modal">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 @endsection
 
 @section('scripts')
@@ -145,10 +172,16 @@
 <!-- Datatables init -->
 <script src="{{ asset('admin/js/pages/datatables.init.js') }}"></script>
 <script>
+    function DeleteNannyProfile(nanny_id) {
+        $('#deleted_nanny_id').val(nanny_id);
+        $('#deleteNanny').modal('show');
+    }
     function send_whatsapp_message(type) {
         var phone_number = $('#nanny_phone_number').val();
+        phone_number = phone_number.replaceAll(" ", "");
+        // console.log(phone_number);
         var message = `https://wa.me/${phone_number}?text=`;
-        console.log(type, $('#message-one-text').text());
+        
         if(type==1){
             message += $('#message-one-text').val();
         }
@@ -156,7 +189,7 @@
         if(type==2){
             message += $('#message-two-text').val();
         }
-        // console.log(message);
+        console.log(message);
         window.open(message);
     }
     function LoadNannyProfile(nanny_id) {

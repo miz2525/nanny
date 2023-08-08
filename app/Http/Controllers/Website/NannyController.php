@@ -20,7 +20,7 @@ class NannyController extends Controller
 
     public function index(Request $request)
     {
-        $nannies = Nanny::select('nannies.*')->join('countries', 'nannies.nationality_id', '=', 'countries.id')->where('nannies.status', 'active');
+        $nannies = Nanny::select('nannies.*')->join('countries', 'nannies.nationality_id', '=', 'countries.id')->where(['nannies.status'=>'active', 'is_deleted'=>0]);
 
         if(isset($request->ex) && $request->ex!=''){
             ($request->ex=='<1')? $nannies->where('nannies.experience_years', "<", 1) : $nannies ;
@@ -56,6 +56,7 @@ class NannyController extends Controller
     public function profile($nanny_id)
     {
         $nanny = Nanny::where(['id'=>$nanny_id, 'status'=>'active'])->first();
+        if($nanny->is_deleted) abort(404);
         if(!$nanny) return redirect()->route('all-nannies');
         return view('website.nanny.profile', compact('nanny'));
     }

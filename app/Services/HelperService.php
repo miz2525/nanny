@@ -58,6 +58,9 @@ class HelperService {
             case 'active':
                 $span = '<span class="badge badge-outline-success">Active</span>';
                 break;
+            case 'hired':
+                $span = '<span class="badge badge-outline-blue">Hired</span>';
+                break;
             
             case 'not_active':
                 $span = '<span class="badge badge-outline-secondary">Not active</span>';

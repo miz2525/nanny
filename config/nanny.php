@@ -6,7 +6,8 @@ return [
     'status' => [
         'active'=>'Active',
         'under_review'=>'Under Review',
-        'not_active'=>'Not Active'
+        'not_active'=>'Not Active',
+        'hired'=>'Hired'
     ],
     'open_to_work' => [
         'live_in'=>'Live-in',

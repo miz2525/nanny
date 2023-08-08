@@ -23,7 +23,7 @@ class NanniesController extends Controller
     
     public function index()
     {
-        $nannies = Nanny::all();
+        $nannies = Nanny::where(['is_deleted'=>0])->get();
         return view('admin.nannies.index', compact('nannies'));
     }
 
@@ -102,8 +102,15 @@ class NanniesController extends Controller
         // MediaService::nanny_images($nanny_id, $request->nanny_images);
         MediaService::nanny_image($nanny_id, $request->nanny_image);
     }
+
     function load_nanny_profile($nanny_id){
         $nanny = Nanny::find($nanny_id);
         return view('admin.nannies.whatsapp-modal', compact('nanny'));
+    }
+
+    function delete_nanny(Request $request) {
+        $nanny = Nanny::find($request->nanny_id);
+        $nanny->update(['is_deleted'=> 1]);
+        return redirect()->route('admin.all-nannies')->with('error', 'Nanny <b>('.$nanny->first_name.' '.$nanny->family_name.')</b> is deleted successfully');
     }
 }
