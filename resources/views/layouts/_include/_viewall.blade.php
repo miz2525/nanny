@@ -4,7 +4,7 @@
       <div class="col-xl-12">
         <div class="promo-content dark-mode-texts text-center">
           <h2 class="promo-content__title">Ready to choose a nanny?</h2>
-          <a href="{{ route('all-nannies') }}" class="btn btn-primary shadow--primary-5 btn--lg-2 rounded-50 text-white mt-5">
+          <a href="https://platform.nannygenie.com" class="btn btn-primary shadow--primary-5 btn--lg-2 rounded-50 text-white mt-5" target="_blank">
             See all nannies
           </a>
         </div>

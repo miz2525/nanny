@@ -42,9 +42,10 @@
             <li>Instant interview booking support</li>
             <li>Access all information & contact details</li>
           </ul>
-          @if(Auth::check() && Auth::user()->is_paid) @else
+          <a href="https://platform.nannygenie.com" class="btn btn-torch-red btn--lg-2 text-white" target="_blank">Browse Available Nannies</a>
+          {{-- @if(Auth::check() && Auth::user()->is_paid) @else
           <a href="{{ route('purchase', env('STRIPE_PRICE_ID')) }}" class="btn btn-torch-red btn--lg-2 text-white">Pay and Get Access</a>
-          @endif
+          @endif --}}
         </div>
       </div>
       <!--/ .Single Table -->

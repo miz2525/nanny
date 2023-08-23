@@ -48,7 +48,7 @@
                 <a href="{{ route('home') }}">Home</a>
               </li>
               <li>
-                <a href="{{ route('all-nannies') }}">All nannies</a>
+                <a href="https://platform.nannygenie.com" target="_blank">All nannies</a>
               </li>
               {{-- <li>
                 <a href="javascript:;">Our story</a>

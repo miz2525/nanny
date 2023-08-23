@@ -27,7 +27,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('all-nannies') }}" class="nav-link-item drop-trigger">
+              <a href="https://platform.nannygenie.com" class="nav-link-item drop-trigger" target="_blank">
                 All nannies
               </a>
             </li>
@@ -60,7 +60,7 @@
           </ul>
         </nav>
       </div>
-      @if (Auth::check())
+      {{-- @if (Auth::check())
         <div class="header-btns  ms-auto ms-lg-0 d-none d-sm-flex align-items-center">
           <a class="btn btn-header-btns btn-link-water btn--medium-2 h-45 text-shark rounded-5 ms-1" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             Logout
@@ -78,7 +78,7 @@
             Get Started
           </a>
         </div>
-      @endif
+      @endif --}}
       
       <!-- mobile menu trigger -->
       <div class="mobile-menu-trigger">

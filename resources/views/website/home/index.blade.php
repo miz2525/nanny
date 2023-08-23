@@ -27,7 +27,7 @@
           </p>
 
           <div class="welcome-btn-group--l3">
-            <a class="btn btn--lg-2 btn-primary shadow--primary text-white rounded-50 me-2 me-sm-3 aos-init aos-animate" href="{{ route('all-nannies') }}" data-aos="fade-up" data-aos-duration="500" data-aos-delay="600" data-aos-once="true">
+            <a class="btn btn--lg-2 btn-primary shadow--primary text-white rounded-50 me-2 me-sm-3 aos-init aos-animate" href="https://platform.nannygenie.com" data-aos="fade-up" data-aos-duration="500" data-aos-delay="600" data-aos-once="true" target="_blank">
               Browse all nannies
             </a>
           </div>
